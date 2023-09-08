@@ -3,7 +3,7 @@ from googleapiclient.discovery import build
 import json
 
 app = Flask(__name__)
-api_key = "AIzaSyBtxJEet5gIXlbXD2gtCKwcss98JnT-Am0"  # Replace with your YouTube API key
+api_key = "API_KEY"
 youtube_service = build("youtube", "v3", developerKey=api_key)
 
 
