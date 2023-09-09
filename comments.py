@@ -2,7 +2,6 @@ from googleapiclient.discovery import build
 import json
 from analysis import AnalysisSingleton
 import time
-from analysis import AnalysisSingleton
 
 
 class CommentProcessor:

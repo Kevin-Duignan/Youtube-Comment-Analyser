@@ -15,9 +15,9 @@ def get_comments(video_id: str):
     cp = CommentProcessor(api_key)
     top_comments = cp.get_comment_threads(video_id)
     analyser = AnalysisSingleton()
-    res = analyser.run_analysis(top_comments)
+    res = []
     return jsonify(res)
 
 
 if __name__ == "__main__":
-    app.run(port=8080, host="0.0.0.0")
+    app.run(port=8080)
