@@ -123,6 +123,11 @@ class AnalysisSingleton:
         for label, values in sentiment_stats.items():
             average_score = values[0] / len(comment_list)
             final_results[label] = [average_score, values[1]]
+        
+        # Ensure 0% stats still return
+        final_results["positive"] = final_results.get("positive", [0, 0])
+        final_results["negative"] = final_results.get("negative", [0, 0])
+        final_results["neutral"] = final_results.get("neutral", [0, 0])
 
         return final_results
     
