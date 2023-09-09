@@ -1,3 +1,7 @@
 transformers
 collections
 flask
+starlette
+asyncio
+optimum
+pathlib
