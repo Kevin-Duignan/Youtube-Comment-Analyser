@@ -3,8 +3,30 @@
   margin-bottom: 24px;
   display: flexbox;
   display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  
+  /*position: relative;*/
+  border-radius: 12px;
+  background: var(--yt-spec-badge-chip-background);
+  min-width: 100%;
+  min-width: max(381px,50% - 12px);
+  flex: 1;
+  flex-basis: 1e-9px;
+  font-family: "Roboto","Arial",sans-serif;
+  font-size: 1.4rem;
+  line-height: 2rem;
+  font-weight: 400;
+  
+  padding: 10px;
+}
+
+.analysis-horizontal-flex {
+  display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  width: 100%;
 }
 
 .analyser-text {
@@ -24,3 +46,15 @@
   line-height: 2.2rem;
   font-weight: 400;
 }
+
+.analyser-content-text {
+  vertical-align: middle;
+  font-family: "Roboto","Arial",sans-serif;
+  font-size: 1.2rem;
+  line-height: 2.2rem;
+  font-weight: 400;
+}
+
+/*.analysis-data-container {
+  
+}*/
