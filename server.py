@@ -11,11 +11,12 @@ async def root(request):
     payload = await request.body()
     video_id = payload.decode("utf-8")
     response_queue = asyncio.Queue()
-    
+
     await request.app.model_queue.put((video_id, response_queue))
-    
+
     output = await response_queue.get()
     return JSONResponse(output)
+
 
 async def server_loop(model_queue: asyncio.Queue, analyser: AnalysisSingleton, cp: CommentProcessor):
     while True:

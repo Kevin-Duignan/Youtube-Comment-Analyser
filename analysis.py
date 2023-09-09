@@ -150,11 +150,15 @@ class AnalysisSingleton:
     def calculate_sarcasm_score(self, comment_list: list[str]) -> float:
         """
         Calculates proportion of comments which are sarcastic
+        Calculates proportion of comments which are sarcastic
 
         :comment_list: A list of comments.
 
         :returns: A float, representing proportion of comments which are sarcastic
+        :returns: A float, representing proportion of comments which are sarcastic
         """
+        # Store number of comments that are sarcastic
+        sarcasm_score = 0
         # Store number of comments that are sarcastic
         sarcasm_score = 0
 
@@ -164,8 +168,12 @@ class AnalysisSingleton:
         for result in sarcasm_results:
             label = result["label"]
             sarcasm_score += int(label == "LABEL_1")
+            label = result["label"]
+            sarcasm_score += int(label == "LABEL_1")
 
         sarcasm_score /= len(comment_list)
+        sarcasm_score /= len(comment_list)
 
+        return sarcasm_score
         return sarcasm_score
 
