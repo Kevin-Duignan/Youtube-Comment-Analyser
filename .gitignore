@@ -1,2 +1,7 @@
 /__pycache__
+<<<<<<< HEAD
 comments.json
+=======
+config.json
+comments.json
+>>>>>>> 71f3019ef06982cec0d625b30ccc02c8d4f3afd5
