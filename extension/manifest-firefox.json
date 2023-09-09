@@ -33,7 +33,7 @@
         "*://m.youtube.com/*"
       ],
       "run_at": "document_idle",
-      "js": ["comment_analysis.js"],
+      "js": ["content_script.js"],
       "css": ["injected_style.css"]
     }
   ],

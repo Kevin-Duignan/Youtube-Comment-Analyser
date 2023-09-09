@@ -32,7 +32,7 @@
         "*://www.youtube.com/*",
         "*://m.youtube.com/*"
       ],
-      "js": ["comment_analysis.js"],
+      "js": ["content_script.js"],
       "css": ["injected_style.css"]
     }
   ],

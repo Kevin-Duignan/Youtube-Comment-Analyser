@@ -1,15 +1,10 @@
 /**
  * Implements the main functionality of the extension:
- * * Send video ID to the server.
- * * Get analysis from server.
+ * * Make requests to server via background script.
  * * Display results on the YouTube webpage.
  */
 
 "use strict";
-
-// Server address information
-const server_address = "158.179.17.136";
-const server_port = "8080";
 
 // Server responses to compare against
 const response_wait_str = "";
@@ -31,104 +26,16 @@ function init(){
   video_id = url.searchParams.get("v");
   console.log("[YouTube Comment Analyser] Video ID:", video_id);
   
-  //sendVideoID(video_id);
-  
-  // For testing purposes
-  displayResults(JSON.parse(`{
-    "sentiment_analysis": {
-      "neutral":[0.23193239296476045,39],
-      "negative":[0.1323493428528309,22],
-      "positive":[0.42666757603486377,59]
-    },
-    "emotion_analysis": {
-      "neutral":[0.2952854464451472,50],
-      "sadness":[0.06265809759497643,11],
-      "joy":[0.19916577686866124,30],
-      "surprise":[0.11126488372683525,19],
-      "disgust":[0.026280804226795833,5],
-      "anger":[0.02251772830883662,4],
-      "fear":[0.003449420134226481,1]
-    },
-    "sarcasm_analysis": 0.0
-  }`));
-  
-}
-
-/**
- * Send the YouTube video ID to the server.
- * @param {String} id YouTube video ID
- */
-function sendVideoID(id){
-  
-  const xmlhttp = new XMLHttpRequest();
-  
-  //xmlhttp.onload = function() {
-  //  handleServerResponse(this.responseText);
-  //}
-  xmlhttp.onreadystatechange = function(){
-    if(this.readyState == 4 && this.status == 200){
-      handleServerResponse(this.responseText);
+  // Request information from the server via the background worker
+  chrome.runtime.sendMessage({ method: "getCommentData", video_id: video_id }, function (response) {
+    console.log("[YouTube Comment Analyser] Got server response:", response);
+    if(response != undefined){
+      displayResults(response);
+    }else{
+      console.error("[YouTube Comment Analyser] Invalid response from background script.");
     }
-    if(this.status == 500){
-      console.error("A server error occurred.");
-    }
-  };
-  
-  xmlhttp.open("GET", "http://"+server_address+":"+server_port + "/" + id, true);
-  xmlhttp.send();
-  
-  console.log("[YouTube Comment Analyser]", xmlhttp);
-  
-}
-
-/**
- * Check is the server is done analysing the comments of the most recently sent video.
- */
-function checkServerStatus(){
-  
-  const xmlhttp = new XMLHttpRequest();
-  
-  //xmlhttp.onload = function() {
-  //  handleServerResponse(this.responseText);
-  //}
-  xmlhttp.onreadystatechange = function(){
-    if(this.readyState == 4 && this.status == 200){
-      handleServerResponse(this.responseText);
-    }
-    if(this.status == 500){
-      console.error("A server error occurred.");
-    }
-    if(this.status == 504){
-      console.error("Server timed out.");
-    }
-  };
-  
-  xmlhttp.open("GET", server_address+":"+server_port + "?videoId="+video_id, true);
-  xmlhttp.send();
-  
-}
-
-/**
- * Wait for a while, then ping the serve again if it isn't done analysing the comments of the most recently sent video.
- * @param {String} response_text The analysis data from the server.
- */
-function handleServerResponse(response_text){
-  
-  if(response_text == response_wait_str) {
-    setTimeout(
-      function(){
-        checkServerStatus();
-      },
-      request_time_interval
-    );
     
-  } else if(response_text == response_timeout_error) {
-    console.error("Server reported timeout.");
-    
-  } else {
-    // Assume that if a particular response was not given, then the server returned valid JSON data which contains the sentiment analysis results.
-    displayResults(JSON.parse(response_text));
-  }
+  });
   
 }
 
@@ -235,7 +142,7 @@ function displayResults(results){
   analysis_sarcasm_text.id = "analysis-emotion-text";
   analysis_sarcasm_text.classList.add("analyser-text");
   analysis_sarcasm_text.classList.add("analyser-content-text");
-  var sentiment_string = results.sarcasm_analysis + "% of comments are sarcastic.";
+  var sentiment_string = Math.round(results.sarcasm_analysis*100) + "% of comments are sarcastic.";
   analysis_sarcasm_text.innerHTML = sentiment_string;
   analysis_sarcasm_container.appendChild(analysis_sarcasm_text);
   analysis_container_h_flex.appendChild(analysis_sarcasm_container);
