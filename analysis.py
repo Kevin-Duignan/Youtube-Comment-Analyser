@@ -11,6 +11,7 @@ from optimum.pipelines import pipeline
 import time
 import json
 
+
 class AnalysisSingleton:
     _instance = None
 
@@ -19,7 +20,7 @@ class AnalysisSingleton:
             cls._instance = super(AnalysisSingleton, cls).__new__(cls)
             cls._instance.init_pipelines()
         return cls._instance
-    
+
     def init_pipelines(self):
         self.sentiment_pipeline = pipeline(
             task="text-classification",
@@ -39,6 +40,34 @@ class AnalysisSingleton:
             accelerator="ort"
         )
         
+            "sentiment-analysis", model="cardiffnlp/twitter-roberta-base-sentiment-latest"
+        )
+
+        self.emotion_pipeline = pipeline("sentiment-analysis", model="j-hartmann/emotion-english-distilroberta-base")
+
+        self.sarcasm_pipeline = pipeline("text2text-generation", model="mrm8488/t5-base-finetuned-sarcasm-twitter")
+
+    def run_analysis(self, comment_list):
+        # with Pool(cpu_count()) as pool:
+        #     sentiment_results = pool.apply_async(self.calculate_sentiment_statistics, (comment_list,))
+        #     emotion_results = pool.apply_async(self.calculate_emotion_statistics, (comment_list,))
+        #     derision_results = pool.apply_async(self.calculate_derision_statistics, (comment_list,))
+        #     pool.close()
+        #     pool.join()
+
+        sentiment_results = self.calculate_sentiment_statistics(comment_list)
+        emotion_results = self.calculate_emotion_statistics(comment_list)
+        derision_results = self.calculate_derision_statistics(comment_list)
+
+        # Combine the results from all the analysis into a single dictionary
+        combined_results = {
+            "sentiment": sentiment_results,
+            "emotion": emotion_results,
+            "derision": derision_results,
+        }
+
+        return combined_results
+
     def calculate_sentiment_statistics(self, comment_list: list[str]) -> dict:
         """
         Calculate sentiment statistics for a list of comments.
@@ -51,6 +80,7 @@ class AnalysisSingleton:
         """
         # Store sentiment scores and counts for each label
         sentiment_stats = defaultdict(lambda: [0, 0])
+
         sentiment_results = self.sentiment_pipeline(comment_list)
 
         # Process sentiment results and update sentiment statistics
@@ -65,7 +95,7 @@ class AnalysisSingleton:
             final_results[label] = (average_score, values[1])
 
         return final_results
-    
+
     def calculate_emotion_statistics(self, comment_list: list[str]) -> dict:
         """
         Calculate emotion class spread for a list of comments.
@@ -95,6 +125,7 @@ class AnalysisSingleton:
         return final_results
     
     def calculate_sarcasm_score(self, comment_list: list[str]) -> float:
+
         """
         Calculates proportion of comments which are sarcastic
 

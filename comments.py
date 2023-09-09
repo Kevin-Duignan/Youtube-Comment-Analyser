@@ -139,3 +139,14 @@ if __name__ == "__main__":
     
     # tokenizer.save_pretrained("test4")
     # model.save_pretrained("test4")
+    
+    start = time.time()
+    with open("config.json", "r") as jsonfile:
+        data = json.load(jsonfile)
+    cp = CommentProcessor(data["api_key"])
+    comments = cp.get_comment_threads("lSD_L-xic9o")
+    analyser = AnalysisSingleton()
+    res = analyser.run_analysis(comments)
+    end = time.time()
+    print(str(end - start) + " seconds")
+    print(res)

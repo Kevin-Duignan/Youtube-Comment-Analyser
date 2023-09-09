@@ -30,7 +30,25 @@ function init(){
   video_id = url.searchParams.get("v");
   console.log("[YouTube Comment Analyser] Video ID:", video_id);
   
-  sendVideoID(video_id);
+  //sendVideoID(video_id);
+  
+  // For testing purposes
+  displayResults([
+    {
+      'positive': (0.6062167062092636, 81),
+      'negative': (0.061384336928189814, 11),
+      'neutral': (0.1496163114147671, 26)},
+    {
+      'joy': (0.25913033192440615, 40),
+      'neutral': (0.2532283413713261, 44),
+      'fear': (0.01478036834021746, 2),
+      'anger': (0.03627788161827346, 7),
+      'surprise': (0.10265902593984443, 18),
+      'sadness': (0.027251392350358478, 5),
+      'disgust': (0.009597580059100006, 2)
+    },
+    {'normal': 95, 'derision': 23}
+  ]);
   
 }
 
@@ -54,7 +72,7 @@ function sendVideoID(id){
     }
   };
   
-  xmlhttp.open("GET", server_address+":"+server_port + "?videoId="+id, true);
+  xmlhttp.open("GET", "http://"+server_address+":"+server_port + "?videoId="+id, true);
   xmlhttp.send();
   
 }
@@ -104,17 +122,32 @@ function handleServerResponse(response_text){
   
 }
 
+/**
+ * Check if the relevant parts of the DOM are available to insert the comment analysis.
+ * @returns {Boolean} True if the relevant parts of the DOM are available.
+ */
+function checkIfCommentsLoaded(){
+  var comment_sections_container = document.getElementById("sections");
+  if(comment_sections_container == null){
+    return false;
+  }
+  
+  var comment_header = comment_sections_container.firstElementChild.firstElementChild;
+  if(comment_header == null){
+    return false;
+  }
+  
+  return true;
+}
 
 /**
  * Modify the DOM of the YouTube page to display the results of the comment analysis.
  * @param {Object} results The sentiment analysis results.
  */
 function displayResults(results){
-  var comments_container = document.getElementById("comments");
-  console.log("comments_container:", comments_container);
   
   // Wait for a while if the DOM isn't ready.
-  if(comments_container == null){
+  if(!checkIfCommentsLoaded()){
     setTimeout(
       function(){
         displayResults(results);
@@ -124,7 +157,25 @@ function displayResults(results){
     return;
   }
   
-  // Add the data to the comments container
+  // Create the container for the analysis results
+  var analysis_container = document.createElement("div");
+  analysis_container.id = "analyser-container";
+  analysis_container.classList.add("style-scope");
+  analysis_container.classList.add("ytd-comments-header-renderer");
+  
+  // Create the header
+  var analysis_header = document.createElement("span");
+  analysis_header.is = "analysis-header";
+  analysis_header.classList.add("analyser-text");
+  analysis_header.classList.add("analyser-header-text");
+  analysis_header.innerHTML = "Comment Analysis:";
+  analysis_container.appendChild(analysis_header);
+  
+  // Add the analysis container to the DOM
+  var comment_header = document.getElementById("sections").firstElementChild.firstElementChild;
+  comment_header.insertBefore(analysis_container, comment_header.children[5]);
+  
+  console.log("[YouTube Comment Analyser] analysis_container:", analysis_container);
   
 }
 
