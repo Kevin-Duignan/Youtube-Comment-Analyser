@@ -1,7 +1,8 @@
 from starlette.applications import Starlette
 from starlette.responses import JSONResponse
+from starlette.middleware import Middleware
+from starlette.middleware.cors import CORSMiddleware
 from starlette.routing import Route
-from starlette.status import HTTP_504_GATEWAY_TIMEOUT
 from transformers import pipeline
 from analysis import AnalysisSingleton
 from comments import CommentProcessor
@@ -44,8 +45,11 @@ async def server_loop(model_queue: asyncio.Queue, analyser: AnalysisSingleton, c
             failed_request = {"error": "Unhandled exception encountered!"}
             await response_queue.put((failed_request, 500))
 
+middleware = [
+    Middleware(CORSMiddleware, allow_origins=["*"])
+]
 
-app = Starlette(routes=[Route("/", root, methods=["POST"]), Route("/{videoId}", root, methods=["GET"])])
+app = Starlette(routes=[Route("/", root, methods=["POST"]), Route("/{videoId}", root, methods=["GET"])], middleware=middleware)
 
 @app.on_event("startup")
 async def startup_event():
