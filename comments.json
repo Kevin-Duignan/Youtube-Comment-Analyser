@@ -1,97 +1,854 @@
 [
     {
-        "author": "Attila Asztalos",
-        "publishedAt": "2023-09-08T21:49:01Z",
-        "text": "Oh, do bugger off. There&#39;s any number of times where we caught the Microchip C compiler red-handed doing brain-dead things that we ended up having to work around. When your code fails for no good reason, there&#39;s nothing else to do but look at the disassembly listing, and then scoff at the sheer fucked-up-ness uncovered.",
+        "author": "Swiftie4life",
+        "publishedAt": "2023-09-09T00:53:54Z",
+        "text": "Buy your soul back please",
+        "likes": 2,
+        "replies": []
+    },
+    {
+        "author": "5star.Xayden",
+        "publishedAt": "2023-09-09T00:19:01Z",
+        "text": "Certified HOOD CLASSIC 😈",
+        "likes": 0,
+        "replies": []
+    },
+    {
+        "author": "kyira ‼️🇷🇺",
+        "publishedAt": "2023-09-08T23:43:55Z",
+        "text": "Laufey today, Laufey Tommorow, Laufey Forever ❤️",
+        "likes": 0,
+        "replies": []
+    },
+    {
+        "author": "Organic Puh",
+        "publishedAt": "2023-09-08T23:26:56Z",
+        "text": "Me: Oh man...Thats a real pretty dress...I wonder if i could find it in my size. <br><b>Uses Bixpy to look it up</b><br>(1.9k Dollars)<br>Me: Ah....I&#39;m good",
+        "likes": 0,
+        "replies": []
+    },
+    {
+        "author": "Anthony Mina",
+        "publishedAt": "2023-09-08T23:24:56Z",
+        "text": "That&#39;s it....I&#39;m buying the album.",
+        "likes": 0,
+        "replies": []
+    },
+    {
+        "author": "Gabriell",
+        "publishedAt": "2023-09-08T23:21:26Z",
+        "text": "I have been enjoying  Laufey&#39;s music but this is my favourite 😮",
+        "likes": 0,
+        "replies": []
+    },
+    {
+        "author": "Neldolas",
+        "publishedAt": "2023-09-08T23:14:46Z",
+        "text": "That VOICE holy shit, it&#39;s so smoooooth!",
+        "likes": 0,
+        "replies": []
+    },
+    {
+        "author": "yerinwannabe",
+        "publishedAt": "2023-09-08T23:12:14Z",
+        "text": "I’m glad there’s new bossa coming out — especially from laufey, I’ve always just listened to songs from decades ago (not saying they aren’t good). Her voice is so angelic :3",
+        "likes": 0,
+        "replies": []
+    },
+    {
+        "author": "Eden Romanov",
+        "publishedAt": "2023-09-08T22:52:51Z",
+        "text": "I definitely understand the hype this is 🔥🔥🔥🔥🔥🔥",
+        "likes": 0,
+        "replies": []
+    },
+    {
+        "author": "coseGF",
+        "publishedAt": "2023-09-08T21:57:50Z",
+        "text": "made me enjoy math",
+        "likes": 2,
+        "replies": []
+    },
+    {
+        "author": "Christian Laroche",
+        "publishedAt": "2023-09-08T21:16:27Z",
+        "text": "Amazing voice!<a href=\"about:invalid#zCSafez\"></a>",
+        "likes": 0,
+        "replies": []
+    },
+    {
+        "author": "ywaiene",
+        "publishedAt": "2023-09-08T20:45:38Z",
+        "text": "BOSSA NOVA!!!!!!! LAUFEY WE LOVE YOU",
+        "likes": 0,
+        "replies": []
+    },
+    {
+        "author": "Bryan Rivera",
+        "publishedAt": "2023-09-08T20:34:08Z",
+        "text": "Wow this song is an instant classic! Felt like I&#39;ve heard it before, but it was refreshing and soothing sound. I&#39;m here for this on repeat all day!",
+        "likes": 0,
+        "replies": []
+    },
+    {
+        "author": "Mercurique",
+        "publishedAt": "2023-09-08T20:31:14Z",
+        "text": "Laufey thank you for existing",
+        "likes": 0,
+        "replies": []
+    },
+    {
+        "author": "Y B.",
+        "publishedAt": "2023-09-08T20:13:31Z",
+        "text": "Really glad more and more people are getting into jazz and Bossa nova through her!",
+        "likes": 0,
+        "replies": []
+    },
+    {
+        "author": "Myself",
+        "publishedAt": "2023-09-08T17:22:32Z",
+        "text": "Love is like a roller coaster it has ups and downs but sometimes is always up but you just need to love life",
+        "likes": 0,
+        "replies": []
+    },
+    {
+        "author": "roko",
+        "publishedAt": "2023-09-08T16:45:44Z",
+        "text": "I relate to the lyrics once my friends heard this they kept sending this mv to me",
+        "likes": 0,
+        "replies": []
+    },
+    {
+        "author": "max  beats 48",
+        "publishedAt": "2023-09-08T16:37:27Z",
+        "text": "she reminds me of like a jazzy mitski and I LOVE ITTTTTTTTTTT",
+        "likes": 0,
+        "replies": [
+            {
+                "author": "Kenna Nightingale",
+                "publishedAt": "2023-09-08T17:48:12Z",
+                "text": "OH MY G IRL KNOW RIGHT❤❤ <a href=\"https://www.youtube.com/watch?v=lSD_L-xic9o&amp;t=2m08s\">2:08</a>",
+                "likes": 0
+            }
+        ]
+    },
+    {
+        "author": "bardock jr.",
+        "publishedAt": "2023-09-08T15:56:54Z",
+        "text": "It’s literally Christmas",
+        "likes": 0,
+        "replies": []
+    },
+    {
+        "author": "Aurum",
+        "publishedAt": "2023-09-08T15:18:29Z",
+        "text": "Can&#39;t seem to divert.my.eyes.away.from.her. underarm.it&#39;s.too.damn.beautiful...",
+        "likes": 0,
+        "replies": []
+    },
+    {
+        "author": "Aiya Observes",
+        "publishedAt": "2023-09-08T14:45:52Z",
+        "text": "yayyyy",
+        "likes": 0,
+        "replies": []
+    },
+    {
+        "author": "cookiesandbiscuits",
+        "publishedAt": "2023-09-08T14:45:06Z",
+        "text": "Oh the urge to scream– I mean sing this song to my crush.<br><br>Yep, it&#39;s unrequited, unfortunately :&#39;)",
+        "likes": 0,
+        "replies": []
+    },
+    {
+        "author": "That One Kid",
+        "publishedAt": "2023-09-08T14:37:37Z",
+        "text": "Loe-vei… I guess thats how her name is pronounced",
+        "likes": 0,
+        "replies": []
+    },
+    {
+        "author": "Orfeu",
+        "publishedAt": "2023-09-08T14:35:38Z",
+        "text": "Bela canção",
+        "likes": 1,
+        "replies": []
+    },
+    {
+        "author": "Neya Janna E. Soliban",
+        "publishedAt": "2023-09-08T14:27:43Z",
+        "text": "If i ever heard this on the elevator music, i might have to ride 4 to 5 times again",
+        "likes": 0,
+        "replies": []
+    },
+    {
+        "author": "mathew",
+        "publishedAt": "2023-09-08T14:02:17Z",
+        "text": "I LOVE U",
+        "likes": 0,
+        "replies": []
+    },
+    {
+        "author": "TsukkiSenpai",
+        "publishedAt": "2023-09-08T13:29:56Z",
+        "text": "W song",
+        "likes": 0,
+        "replies": []
+    },
+    {
+        "author": "Angeline Bena",
+        "publishedAt": "2023-09-08T12:13:51Z",
+        "text": "I love her songs so much what an inspiration!!",
+        "likes": 0,
+        "replies": []
+    },
+    {
+        "author": "Prince Cedrick Dimaguila",
+        "publishedAt": "2023-09-08T11:38:46Z",
+        "text": "<b>romance recommendations part 2</b>",
+        "likes": 0,
+        "replies": []
+    },
+    {
+        "author": "Burai Róbert",
+        "publishedAt": "2023-09-08T11:03:13Z",
+        "text": "shes so cute omg",
+        "likes": 1,
+        "replies": []
+    },
+    {
+        "author": "hi hi",
+        "publishedAt": "2023-09-08T10:53:10Z",
+        "text": "🫵😻",
+        "likes": 0,
+        "replies": []
+    },
+    {
+        "author": "Furr-gots",
+        "publishedAt": "2023-09-08T10:36:02Z",
+        "text": "I like kids!",
+        "likes": 0,
+        "replies": []
+    },
+    {
+        "author": "Asolf",
+        "publishedAt": "2023-09-08T10:26:31Z",
+        "text": "She reminds me of my teacher",
+        "likes": 0,
+        "replies": []
+    },
+    {
+        "author": "Speedy Faiz",
+        "publishedAt": "2023-09-08T10:19:37Z",
+        "text": "didnt this song came out like years ago or am i just triping cuz i remember listening to this song like 2 years ago",
+        "likes": 0,
+        "replies": [
+            {
+                "author": "Mr Potato",
+                "publishedAt": "2023-09-08T14:36:26Z",
+                "text": "tripping bro. Mandela effect goes brrr",
+                "likes": 0
+            }
+        ]
+    },
+    {
+        "author": "cream T. rabbit",
+        "publishedAt": "2023-09-08T10:17:23Z",
+        "text": "❤❤",
+        "likes": 0,
+        "replies": []
+    },
+    {
+        "author": "WEI RU",
+        "publishedAt": "2023-09-08T10:13:53Z",
+        "text": "OH❤CUPID😊WALKS😮RIGHT😅THOUGH🎉AND😂SHOOTS🎉AN😢ARROW😅THOUGH😅MY😊HEARTTT",
+        "likes": 2,
+        "replies": []
+    },
+    {
+        "author": "MR. JMXHD",
+        "publishedAt": "2023-09-08T10:06:35Z",
+        "text": "Got me hooked in 10 seconds!",
+        "likes": 0,
+        "replies": []
+    },
+    {
+        "author": "TinyTunesReviews.",
+        "publishedAt": "2023-09-08T09:43:41Z",
+        "text": "I&#39;m in LOVE with her voice. Tell me, sho is singing like that today? Who? And she looks like that actress I want to run me over with a car? Sign me up!",
+        "likes": 1,
+        "replies": []
+    },
+    {
+        "author": "Sarah Demioko",
+        "publishedAt": "2023-09-08T09:20:00Z",
+        "text": "<a href=\"https://www.youtube.com/watch?v=lSD_L-xic9o&amp;t=2m00s\">2:00</a> reminds me of Red Velvet for those who knowsn",
         "likes": 1,
         "replies": [
             {
-                "author": "Attila Asztalos",
-                "publishedAt": "2023-09-08T22:34:18Z",
-                "text": "@psycholian Maybe that&#39;s just something we all have to deal with all the time. Maybe because we just expect the compiler to do the right thing, and every time it fails to do so we are putting in extra hours just to catch it fail, doing the work that should have been done (but was NOT) by whoever made that compiler. And there&#39;s never a chance in hell we take kindly to that sort of fucking up.",
-                "likes": 0
-            },
-            {
-                "author": "psycholian",
-                "publishedAt": "2023-09-08T22:15:49Z",
-                "text": "That&#39;s exactly what he said in the video though? Why &quot;bugger off&quot;?",
+                "author": "Waiting For The Hook",
+                "publishedAt": "2023-09-08T11:46:15Z",
+                "text": "Laufey loves Kpop, funny enough. I have no idea if she knows/likes Red Velvet, but she&#39;s obsessed with NewJeans.",
                 "likes": 1
             }
         ]
     },
     {
-        "author": "Rick Sanchez",
-        "publishedAt": "2023-09-08T20:25:44Z",
-        "text": "I don&#39;t know if it is me, a converted C++ developer, and those casts already make me suspicious, or it&#39;s completely fine?",
+        "author": "Lim",
+        "publishedAt": "2023-09-08T08:47:30Z",
+        "text": "she is so perfect bla bla bla",
+        "likes": 0,
+        "replies": []
+    },
+    {
+        "author": "Karansingh Khichi",
+        "publishedAt": "2023-09-08T08:22:46Z",
+        "text": "Chh B  bhi vvvv",
+        "likes": 0,
+        "replies": []
+    },
+    {
+        "author": "UPIN KHỊT CẦN",
+        "publishedAt": "2023-09-08T08:15:11Z",
+        "text": "Finally!",
+        "likes": 0,
+        "replies": []
+    },
+    {
+        "author": "David Vollmer",
+        "publishedAt": "2023-09-08T07:52:57Z",
+        "text": "Aaaah.... Sexy music has returned.",
+        "likes": 0,
+        "replies": []
+    },
+    {
+        "author": "TheDenver27",
+        "publishedAt": "2023-09-08T07:23:43Z",
+        "text": "ooh this is very nice",
+        "likes": 0,
+        "replies": []
+    },
+    {
+        "author": "burger lad",
+        "publishedAt": "2023-09-08T06:44:25Z",
+        "text": "Bro imagine if she came out with a Christmas album. That would be fire",
         "likes": 3,
         "replies": []
     },
     {
-        "author": "linuxguy 11",
-        "publishedAt": "2023-09-08T18:20:28Z",
-        "text": "As someone who&#39;s designed their own CPU I can 100% attest that assuming the CPU is actually executing instructions correctly is not always a good idea. I had a program I was writing and every now and then a conditional check would fail, it was random and there was seemingly no pattern so I spent hours debugging the software to see if I could fix it. Turns out inside the MCU the main OR gate that handles all the branching instructions (JMP, JEQ, JNQ, etc) was missing a wire to signal the buffer register to temporarily store the JMP mode, so if an interrupt occurred at the time of the branch it would execute the interrupt, return to the branch, load the branch instruction, write the JMP register but never signal the program counter to load the value from the JMP register (also ignoring the interrupt as well) because the interrupt never updated the JMP buffer register it&#39;s contents were cancelled cancelled.",
-        "likes": 18,
+        "author": "chae's strawberry",
+        "publishedAt": "2023-09-08T06:24:32Z",
+        "text": "This is a smash hit omg!",
+        "likes": 0,
+        "replies": []
+    },
+    {
+        "author": "Sleepy Podcast",
+        "publishedAt": "2023-09-08T05:01:22Z",
+        "text": "Oh I feel attacked by this song 😭",
+        "likes": 0,
+        "replies": []
+    },
+    {
+        "author": "Thắng Nguyễn Hông",
+        "publishedAt": "2023-09-08T04:59:22Z",
+        "text": "7th time this popped up in my feed letss go!!!",
+        "likes": 0,
+        "replies": []
+    },
+    {
+        "author": "Sophie",
+        "publishedAt": "2023-09-08T04:54:41Z",
+        "text": "Such a bop! 😝",
+        "likes": 0,
+        "replies": []
+    },
+    {
+        "author": "Trung Anh",
+        "publishedAt": "2023-09-08T04:46:43Z",
+        "text": "Laufey Genius Verified yes",
+        "likes": 0,
+        "replies": []
+    },
+    {
+        "author": "Daniel Castaneda",
+        "publishedAt": "2023-09-08T04:37:02Z",
+        "text": "This songs makes me think of a romantic story in Brazil",
+        "likes": 0,
+        "replies": []
+    },
+    {
+        "author": "Sunk Monkey",
+        "publishedAt": "2023-09-08T04:14:13Z",
+        "text": "THATS A 10 LETS GO",
+        "likes": 1,
+        "replies": []
+    },
+    {
+        "author": "C_o_b_y",
+        "publishedAt": "2023-09-08T04:01:40Z",
+        "text": "i really love jazz didnt think that there would be a good and famous one",
+        "likes": 0,
+        "replies": []
+    },
+    {
+        "author": "Mih",
+        "publishedAt": "2023-09-08T03:38:29Z",
+        "text": "This is so lovely and sad at the same time. Brazilians love bossa nova but no one creates it anymore, it takes people from other countries to create masterpieces so we can relive my childhood feelings of listening to a fresh bossa nova - piada nao intencional. The best is that it sounds so much like the most famous ones and not the elevator music everyone associates it with 🙄, completely fills my heart. So tank you so much laufey for pouring all your talent into this underappreciated genre, do know we appreciate you a LOT ♥",
+        "likes": 10,
+        "replies": []
+    },
+    {
+        "author": "Warsin",
+        "publishedAt": "2023-09-08T02:36:40Z",
+        "text": "Grow FOREVER!",
+        "likes": 0,
+        "replies": []
+    },
+    {
+        "author": "Playlistismo",
+        "publishedAt": "2023-09-08T02:33:02Z",
+        "text": "@   &gt;\tLaufey\r<br> 🎶&gt;\tFrom The Start\r<br>💿 &gt;\tBewitched\r<br>  p   &gt;\t2023\r<br>🎬︎ &gt;\tJason Lester",
+        "likes": 2,
+        "replies": []
+    },
+    {
+        "author": "Ellioh!",
+        "publishedAt": "2023-09-08T02:05:55Z",
+        "text": "live laugh love laufey",
+        "likes": 2,
+        "replies": []
+    },
+    {
+        "author": "Stormy Ressurected",
+        "publishedAt": "2023-09-08T01:46:12Z",
+        "text": "Jazz is definitely my thing, and it’s fun to see how it’s being resurrected to people who were previously oblivious to it. Hope everyone realizes how much they’ve missed to it!",
+        "likes": 63,
         "replies": [
             {
-                "author": "caio davi",
-                "publishedAt": "2023-09-08T20:58:24Z",
-                "text": "maybe thats because your cpu is dogshit. i find jt hard to believe that any company would make a cpu that doesnt execute code correctly",
+                "author": "Stormy Ressurected",
+                "publishedAt": "2023-09-08T19:05:01Z",
+                "text": "@KwelGuy It’s fun word, yea haha",
                 "likes": 0
+            },
+            {
+                "author": "KwelGuy",
+                "publishedAt": "2023-09-08T18:59:10Z",
+                "text": "i too like using the word resurrected",
+                "likes": 1
             }
         ]
     },
     {
-        "author": "MW",
-        "publishedAt": "2023-09-08T18:10:31Z",
-        "text": "I feel that there is room to improve this area.<br>There is enough hardware today to, for example, run a test suite with all compilation variations and compare the result between them.<br>If there is a mismatch, there is something wrong with one of them.",
+        "author": "Sinclair James",
+        "publishedAt": "2023-09-08T01:34:40Z",
+        "text": "I heard this song today (9/7/23) on WFUV in the NJ/NY area. I thought to myself “We just lost Astrid Gilberto a short time ago… but we gained a new one.”<br><br>Hoping more bossa style comes through because this song kicked my ass today",
+        "likes": 0,
+        "replies": []
+    },
+    {
+        "author": "Wanderley Souza",
+        "publishedAt": "2023-09-08T01:17:10Z",
+        "text": "Que voz!!!!!",
+        "likes": 5,
+        "replies": []
+    },
+    {
+        "author": "higheriam",
+        "publishedAt": "2023-09-08T00:56:30Z",
+        "text": "$371 tickets, really. <br>Talented artists who have paid their dues don&#39;t charge that. <br>Guess they are not Precious like Princess. 👁‍🗨",
+        "likes": 0,
+        "replies": []
+    },
+    {
+        "author": "Ravenz",
+        "publishedAt": "2023-09-08T00:49:04Z",
+        "text": "Evangelion fans for no reason😍😭",
+        "likes": 0,
+        "replies": []
+    },
+    {
+        "author": "The Dark Mage",
+        "publishedAt": "2023-09-08T00:10:46Z",
+        "text": "Nice 👍",
+        "likes": 0,
+        "replies": []
+    },
+    {
+        "author": "PhainzIsTanner",
+        "publishedAt": "2023-09-07T23:52:00Z",
+        "text": "Meep city houses be like:",
+        "likes": 0,
+        "replies": []
+    },
+    {
+        "author": "Trina B",
+        "publishedAt": "2023-09-07T22:45:26Z",
+        "text": "❤❤ OH MY!   Fabulous!  Great song, wonderful video and you are incredibly beautiful!   I am so glad I heard your interview on NPR this morning.",
         "likes": 1,
         "replies": [
             {
-                "author": "Rick Sanchez",
-                "publishedAt": "2023-09-08T20:22:56Z",
-                "text": "Do Linux kernel even do unit testing and hardware test runs?",
-                "likes": 2
+                "author": "Laufey from the start (official video)",
+                "publishedAt": "2023-09-07T23:04:54Z",
+                "text": "📥📥📥📥...",
+                "likes": 0
             }
         ]
     },
     {
-        "author": "Jëreskal dump",
-        "publishedAt": "2023-09-08T18:07:12Z",
-        "text": "Great scratch on the black boxes known as compilers!",
-        "likes": 0,
-        "replies": []
-    },
-    {
-        "author": "Cagatay Cakir",
-        "publishedAt": "2023-09-08T17:05:43Z",
-        "text": "Really crazy...",
-        "likes": 0,
-        "replies": []
-    },
-    {
-        "author": "felps321",
-        "publishedAt": "2023-09-08T15:54:35Z",
-        "text": "Wow that&#39;s crazy. To think that compiler that has existed for decades can miscompile such a simple code. I&#39;m even scared to think what it can do in complex C++ codebase. I wonder if there would be any problem if cast wasn&#39;t used, I try to avoid casts.",
-        "likes": 20,
+        "author": "Itslazyrivera",
+        "publishedAt": "2023-09-07T22:43:50Z",
+        "text": "Thanks to Laugey my crush said he in love with me ❤my new favorite singer",
+        "likes": 1,
         "replies": [
             {
-                "author": "felps321",
-                "publishedAt": "2023-09-08T19:21:21Z",
-                "text": "@Vitaly L I personally encountered at least 5 compiler bugs in the past week while developing some small C++ lib, 2 bugs in gcc, 3 in clang, but those bugs are related to various aspects of C++&#39;s semantics, so code just didn&#39;t compile. I dealt with those bugs by working around them with <a href=\"http://www.youtube.com/results?search_query=%23ifdef\">#ifdef</a>-guarded code, but I have no idea how I would spot and &quot;fix&quot; miscompilations. Should I read assembly that&#39;s produced from my code?",
-                "likes": 1
-            },
+                "author": "Laufey from the start (official video)",
+                "publishedAt": "2023-09-07T23:05:05Z",
+                "text": "📥📥📥📥📥📥....",
+                "likes": 0
+            }
+        ]
+    },
+    {
+        "author": "Galaxy Memer",
+        "publishedAt": "2023-09-07T22:36:58Z",
+        "text": "Ay bruh, I know I&#39;m late to the party- BUT THIS IS HEAT!",
+        "likes": 1,
+        "replies": [
             {
-                "author": "Zachary Montgomery",
-                "publishedAt": "2023-09-08T18:01:30Z",
-                "text": "​@Vitaly LI think I&#39;m going to have a nightmare about this job after reading it today.",
+                "author": "Laufey from the start (official video)",
+                "publishedAt": "2023-09-07T23:05:18Z",
+                "text": "📥📥📥📥.....",
+                "likes": 0
+            }
+        ]
+    },
+    {
+        "author": "𝐠𝐢𝐲𝐮𝐮★",
+        "publishedAt": "2023-09-07T22:16:06Z",
+        "text": "I can relate to this song so much it’s not a joke anymore 😭",
+        "likes": 1,
+        "replies": []
+    },
+    {
+        "author": "La Merveille",
+        "publishedAt": "2023-09-07T22:12:52Z",
+        "text": "I love this!!",
+        "likes": 1,
+        "replies": []
+    },
+    {
+        "author": "Stayner Cubillo",
+        "publishedAt": "2023-09-07T21:32:37Z",
+        "text": "she gives Natalia Lafurcade vibes.",
+        "likes": 1,
+        "replies": [
+            {
+                "author": "Laufey from the start (official video)",
+                "publishedAt": "2023-09-07T23:06:32Z",
+                "text": "📥📥📥📥......",
+                "likes": 0
+            }
+        ]
+    },
+    {
+        "author": "Alivia",
+        "publishedAt": "2023-09-07T21:27:53Z",
+        "text": "OMG I LOVE YOU LAUFEY 🥰💕❤️💕♥️💜🖤💚💛😻💞💘💝",
+        "likes": 1,
+        "replies": [
+            {
+                "author": "Laufey from the start (official video)",
+                "publishedAt": "2023-09-07T23:06:21Z",
+                "text": "📥📥.....",
+                "likes": 0
+            }
+        ]
+    },
+    {
+        "author": "Sappy1738",
+        "publishedAt": "2023-09-07T21:17:20Z",
+        "text": "why did this show up on my front page out of nowhere",
+        "likes": 1,
+        "replies": []
+    },
+    {
+        "author": "Victor Kreitner",
+        "publishedAt": "2023-09-07T20:32:30Z",
+        "text": "You know who she reminds me of, like a female version of Tony Bennett. That&#39;s a special gift.",
+        "likes": 1,
+        "replies": [
+            {
+                "author": "olli2591",
+                "publishedAt": "2023-09-08T21:33:24Z",
+                "text": "Well, she&#39;s not also a singer but also a multi-instrumentalist, composer and producer. She&#39;s much more musically educated and talented than Tony Bennett.",
                 "likes": 0
             },
             {
-                "author": "Vitaly L",
-                "publishedAt": "2023-09-08T17:57:51Z",
-                "text": "Have you seen bug trackers for both gcc and clang? They&#39;re full of critical bugs - compiler crashes, incorrect compilation, etc. Most are not fixed. I found a couple of dozens of such bugs (granted, I torture-tested compilers with csmith deliberately, that was my job).",
-                "likes": 11
+                "author": "Laufey from the start (official video)",
+                "publishedAt": "2023-09-07T23:04:35Z",
+                "text": "📥📥..",
+                "likes": 0
             }
         ]
+    },
+    {
+        "author": "Victor Kreitner",
+        "publishedAt": "2023-09-07T20:30:05Z",
+        "text": "I heard her interveiw on NPR today. It was the first time I ever heard of her so I had to look her up on YT. Wow she&#39;s not only super talented she&#39;s beautiful. Will need to listen to my new found joy more from this point forward.",
+        "likes": 1,
+        "replies": []
+    },
+    {
+        "author": "mishaal",
+        "publishedAt": "2023-09-07T20:29:56Z",
+        "text": "I LOVE U",
+        "likes": 1,
+        "replies": [
+            {
+                "author": "Laufey from the start (official video)",
+                "publishedAt": "2023-09-07T23:04:07Z",
+                "text": "📥📥📥📥....",
+                "likes": 0
+            }
+        ]
+    },
+    {
+        "author": "Random",
+        "publishedAt": "2023-09-07T20:26:52Z",
+        "text": "YAY❤❤",
+        "likes": 1,
+        "replies": [
+            {
+                "author": "Laufey from the start (official video)",
+                "publishedAt": "2023-09-07T23:02:24Z",
+                "text": "📥📥📥📥📥📥",
+                "likes": 0
+            }
+        ]
+    },
+    {
+        "author": "casey",
+        "publishedAt": "2023-09-07T18:51:37Z",
+        "text": "caramel voice. so beautiful!",
+        "likes": 2,
+        "replies": [
+            {
+                "author": "Laufey from the start (official video)",
+                "publishedAt": "2023-09-07T19:56:04Z",
+                "text": "📥📥",
+                "likes": 0
+            }
+        ]
+    },
+    {
+        "author": "LittleRat",
+        "publishedAt": "2023-09-07T18:41:25Z",
+        "text": "Laufey is my spirit animal🩷🩷",
+        "likes": 2,
+        "replies": [
+            {
+                "author": "Laufey from the start (official video)",
+                "publishedAt": "2023-09-07T19:56:14Z",
+                "text": "📥📥",
+                "likes": 0
+            }
+        ]
+    },
+    {
+        "author": "amakiscool",
+        "publishedAt": "2023-09-07T18:05:22Z",
+        "text": "I became a Lauver in one day listen to her for 3+ hours i love her night of symphony can’t wait for this",
+        "likes": 1,
+        "replies": []
+    },
+    {
+        "author": "danyal mohammad",
+        "publishedAt": "2023-09-07T17:42:43Z",
+        "text": "never meant to belong by bleach &gt;&gt;&gt;&gt;",
+        "likes": 1,
+        "replies": [
+            {
+                "author": "Laufey from the start (official video)",
+                "publishedAt": "2023-09-07T19:56:36Z",
+                "text": "📥📥",
+                "likes": 0
+            }
+        ]
+    },
+    {
+        "author": "ElefantInDaRooM",
+        "publishedAt": "2023-09-07T17:34:14Z",
+        "text": "Yes! Bring back scatting!",
+        "likes": 1,
+        "replies": [
+            {
+                "author": "Laufey from the start (official video)",
+                "publishedAt": "2023-09-07T19:56:44Z",
+                "text": "📥📥",
+                "likes": 0
+            }
+        ]
+    },
+    {
+        "author": "Another Internet Peep",
+        "publishedAt": "2023-09-07T17:04:57Z",
+        "text": "The lyrics are on top. They capture everything perfectly.",
+        "likes": 9,
+        "replies": []
+    },
+    {
+        "author": "xoriken",
+        "publishedAt": "2023-09-07T16:35:14Z",
+        "text": "lesgo",
+        "likes": 1,
+        "replies": [
+            {
+                "author": "Laufey from the start (official video)",
+                "publishedAt": "2023-09-07T19:57:14Z",
+                "text": "📥📥📥📥",
+                "likes": 0
+            }
+        ]
+    },
+    {
+        "author": "♡CODY♡",
+        "publishedAt": "2023-09-07T16:31:55Z",
+        "text": "U remind me a lot is mitski  idk if that&#39;s just me",
+        "likes": 2,
+        "replies": [
+            {
+                "author": "Laufey from the start (official video)",
+                "publishedAt": "2023-09-07T19:57:29Z",
+                "text": "📥📥📥📥",
+                "likes": 0
+            }
+        ]
+    },
+    {
+        "author": "nil",
+        "publishedAt": "2023-09-07T16:21:21Z",
+        "text": "i love her",
+        "likes": 1,
+        "replies": [
+            {
+                "author": "Laufey from the start (official video)",
+                "publishedAt": "2023-09-07T19:57:39Z",
+                "text": "📥📥",
+                "likes": 0
+            }
+        ]
+    },
+    {
+        "author": "Siam Benjapong",
+        "publishedAt": "2023-09-07T15:51:45Z",
+        "text": "😮❤ Sweet and mellow 🎉❤❤❤❤❤❤❤❤❤❤❤❤",
+        "likes": 1,
+        "replies": []
+    },
+    {
+        "author": "🔅ecinu 🔆",
+        "publishedAt": "2023-09-07T15:36:04Z",
+        "text": "I’m a classical Musik enjoyer and I’m 14 finding Laufey is a great experience!!",
+        "likes": 1,
+        "replies": [
+            {
+                "author": "Laufey from the start (official video)",
+                "publishedAt": "2023-09-07T19:58:37Z",
+                "text": "📥📥",
+                "likes": 0
+            }
+        ]
+    },
+    {
+        "author": "Ja",
+        "publishedAt": "2023-09-07T15:34:22Z",
+        "text": "have the &quot;Blueberry Eyes&quot; vibes",
+        "likes": 1,
+        "replies": [
+            {
+                "author": "Laufey from the start (official video)",
+                "publishedAt": "2023-09-07T19:58:46Z",
+                "text": "📥📥",
+                "likes": 0
+            }
+        ]
+    },
+    {
+        "author": "CosmicMapping",
+        "publishedAt": "2023-09-07T15:21:43Z",
+        "text": "Nobody GETS IT like Laufey GETS IT.",
+        "likes": 1,
+        "replies": [
+            {
+                "author": "Laufey from the start (official video)",
+                "publishedAt": "2023-09-07T19:59:02Z",
+                "text": "📥📥",
+                "likes": 0
+            }
+        ]
+    },
+    {
+        "author": "Rbm_ Gps",
+        "publishedAt": "2023-09-07T14:39:18Z",
+        "text": "REAL MEN LISTEN TO LAUFEY 🗣🔥🔥💪💪",
+        "likes": 2,
+        "replies": []
+    },
+    {
+        "author": "Luziaziazia",
+        "publishedAt": "2023-09-07T14:36:43Z",
+        "text": "saw someone call this jazz, but it sounds more like bossa nova to me",
+        "likes": 0,
+        "replies": []
+    },
+    {
+        "author": "Steve",
+        "publishedAt": "2023-09-07T13:35:12Z",
+        "text": "<a href=\"https://www.youtube.com/watch?v=lSD_L-xic9o&amp;t=0m53s\">0:53</a> is 🔥",
+        "likes": 0,
+        "replies": []
+    },
+    {
+        "author": "Jumped Cashew",
+        "publishedAt": "2023-09-07T13:35:06Z",
+        "text": "I never thought I’d be hearing a jazz song (WITH A SCAT SECTION) be this popular in 2023. Let’s gooooooo",
+        "likes": 0,
+        "replies": []
+    },
+    {
+        "author": "Jaid Vance",
+        "publishedAt": "2023-09-07T13:28:47Z",
+        "text": "Plot twist: This is actually Junia we&#39;re seeing because Laufey wasn&#39;t feeling well during the take of this Music Video. :)<br>HAHAHHAA",
+        "likes": 0,
+        "replies": []
+    },
+    {
+        "author": "Zaira Austria",
+        "publishedAt": "2023-09-07T13:23:03Z",
+        "text": "FAVORITE Song 🎵🎵🎵🎵🎵  so fire 🔥🔥🔥🔥",
+        "likes": 0,
+        "replies": []
+    },
+    {
+        "author": "mxrticc",
+        "publishedAt": "2023-09-07T13:05:36Z",
+        "text": "I really can&#39;t tell how much I love your music🤍",
+        "likes": 0,
+        "replies": []
+    },
+    {
+        "author": "Andrew",
+        "publishedAt": "2023-09-07T13:02:07Z",
+        "text": "sad how you copied beach bunny&#39;s cloud 9 and didn&#39;t even give any credit",
+        "likes": 0,
+        "replies": []
+    },
+    {
+        "author": "Jeniza Dayao",
+        "publishedAt": "2023-09-07T12:26:21Z",
+        "text": "blah i see in the papar",
+        "likes": 0,
+        "replies": []
     }
 ]
