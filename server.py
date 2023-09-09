@@ -7,15 +7,17 @@ from comments import CommentProcessor
 import asyncio
 import json
 
+
 async def root(request):
     payload = await request.body()
     video_id = payload.decode("utf-8")
     response_queue = asyncio.Queue()
-    
+
     await request.app.model_queue.put((video_id, response_queue))
-    
+
     output = await response_queue.get()
     return JSONResponse(output)
+
 
 async def server_loop(model_queue: asyncio.Queue, analyser: AnalysisSingleton, cp: CommentProcessor):
     while True:
@@ -28,20 +30,22 @@ async def server_loop(model_queue: asyncio.Queue, analyser: AnalysisSingleton, c
         ]
         await response_queue.put(out)
 
+
 app = Starlette(
     routes=[
-        Route("/", root, methods=["POST"]), 
+        Route("/", root, methods=["POST"]),
     ],
 )
+
 
 @app.on_event("startup")
 async def startup_event():
     analyser = AnalysisSingleton()
     with open("config.json", "r") as jsonfile:
         data = json.load(jsonfile)
-        
+
     cp = CommentProcessor(data["api_key"])
-    
+
     model_queue = asyncio.Queue()
     app.model_queue = model_queue
     asyncio.create_task(server_loop(model_queue, analyser, cp))
