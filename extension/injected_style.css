@@ -1,0 +1,26 @@
+
+#analyser-container {
+  margin-bottom: 24px;
+  display: flexbox;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.analyser-text {
+  color: var(--yt-spec-text-primary);
+}
+
+.analyser-header-text {
+  /*font-family: "Roboto","Arial",sans-serif;
+  font-size: 2rem;
+  line-height: 2.8rem;
+  font-weight: 700;
+  white-space: normal;*/
+  
+  vertical-align: middle;
+  font-family: "Roboto","Arial",sans-serif;
+  font-size: 1.6rem;
+  line-height: 2.2rem;
+  font-weight: 400;
+}
