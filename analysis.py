@@ -4,7 +4,7 @@ from optimum.onnxruntime import (
     AutoOptimizationConfig,
     ORTModelForSequenceClassification,
     ORTQuantizer,
-    ORTOptimizer
+    ORTOptimizer,
 )
 from transformers import AutoTokenizer
 from optimum.pipelines import pipeline
@@ -24,23 +24,16 @@ class AnalysisSingleton:
     def init_pipelines(self):
         self.sentiment_pipeline = pipeline(
             task="text-classification",
-            # model="cardiffnlp/twitter-roberta-base-sentiment-latest",
-            accelerator="ort"
+            model="cardiffnlp/twitter-roberta-base-sentiment-latest",
+            accelerator="ort",
         )
 
         self.emotion_pipeline = pipeline(
-            task="text-classification",
-            model="j-hartmann/emotion-english-distilroberta-base",
-            accelerator="ort"
+            task="text-classification", model="j-hartmann/emotion-english-distilroberta-base", accelerator="ort"
         )
 
         self.sarcasm_pipeline = pipeline(
-            task="text-classification",
-            model="jkhan447/sarcasm-detection-RoBerta-base-CR",
-            accelerator="ort"
-        )
-        
-            "sentiment-analysis", model="cardiffnlp/twitter-roberta-base-sentiment-latest"
+            task="text-classification", model="jkhan447/sarcasm-detection-RoBerta-base-CR", accelerator="ort"
         )
 
         self.emotion_pipeline = pipeline("sentiment-analysis", model="j-hartmann/emotion-english-distilroberta-base")
@@ -123,9 +116,8 @@ class AnalysisSingleton:
             final_results[label] = (average_score, values[1])
 
         return final_results
-    
-    def calculate_sarcasm_score(self, comment_list: list[str]) -> float:
 
+    def calculate_sarcasm_score(self, comment_list: list[str]) -> float:
         """
         Calculates proportion of comments which are sarcastic
 
@@ -146,4 +138,3 @@ class AnalysisSingleton:
         sarcasm_score /= len(comment_list)
 
         return sarcasm_score
-
