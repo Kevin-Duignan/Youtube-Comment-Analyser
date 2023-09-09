@@ -31,26 +31,26 @@ function init(){
   video_id = url.searchParams.get("v");
   console.log("[YouTube Comment Analyser] Video ID:", video_id);
   
-  sendVideoID(video_id);
+  //sendVideoID(video_id);
   
   // For testing purposes
-  //displayResults(JSON.parse(`{
-  //  "sentiment_analysis": {
-  //    "neutral":[0.23193239296476045,39],
-  //    "negative":[0.1323493428528309,22],
-  //    "positive":[0.42666757603486377,59]
-  //  },
-  //  "emotion_analysis": {
-  //    "neutral":[0.2952854464451472,50],
-  //    "sadness":[0.06265809759497643,11],
-  //    "joy":[0.19916577686866124,30],
-  //    "surprise":[0.11126488372683525,19],
-  //    "disgust":[0.026280804226795833,5],
-  //    "anger":[0.02251772830883662,4],
-  //    "fear":[0.003449420134226481,1]
-  //  },
-  //  "sarcasm_analysis": 0.0
-  //}`));
+  displayResults(JSON.parse(`{
+    "sentiment_analysis": {
+      "neutral":[0.23193239296476045,39],
+      "negative":[0.1323493428528309,22],
+      "positive":[0.42666757603486377,59]
+    },
+    "emotion_analysis": {
+      "neutral":[0.2952854464451472,50],
+      "sadness":[0.06265809759497643,11],
+      "joy":[0.19916577686866124,30],
+      "surprise":[0.11126488372683525,19],
+      "disgust":[0.026280804226795833,5],
+      "anger":[0.02251772830883662,4],
+      "fear":[0.003449420134226481,1]
+    },
+    "sarcasm_analysis": 0.0
+  }`));
   
 }
 

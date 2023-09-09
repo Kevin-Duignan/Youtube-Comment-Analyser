@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "YouTube Comment Analyser",
-  "version": "0.0.1",
+  "version": "1.0",
   
   "description": "Eliminate the hassle of reading comments by providing quick sentiment analysis.",
   "homepage_url": "https://github.com/Kevin-Duignan/MACathon-noname",
@@ -13,9 +13,9 @@
   },
   
   "permissions": [
+    "webNavigation",
     "activeTab",
     "*://*.youtube.com/*",
-    "storage",
     "*://158.179.17.136:8080/*"
   ],
   
@@ -36,6 +36,11 @@
       "js": ["comment_analysis.js"],
       "css": ["injected_style.css"]
     }
-  ]
+  ],
+  
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  }
   
 }
