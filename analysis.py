@@ -90,6 +90,15 @@ class AnalysisSingleton:
         
         print(f"{model_id} optimized in quantized into {export_path} !")
         
+    def process_comment_list(self, comment_list: list[str]) -> dict:
+        content = {
+            "sentiment_analysis": self.calculate_sentiment_statistics(comment_list),
+            "emotion_analysis": self.calculate_emotion_statistics(comment_list),
+            "sarcasm_analysis": self.calculate_sarcasm_score(comment_list)
+        }
+        
+        return (content, 200)
+        
     def calculate_sentiment_statistics(self, comment_list: list[str]) -> dict:
         """
         Calculate sentiment statistics for a list of comments.

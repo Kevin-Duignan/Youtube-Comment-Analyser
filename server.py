@@ -5,16 +5,12 @@ from starlette.status import HTTP_504_GATEWAY_TIMEOUT
 from transformers import pipeline
 from analysis import AnalysisSingleton
 from comments import CommentProcessor
+from googleapiclient.errors import HttpError
 import asyncio
 import json
 import time
 
-REQUEST_TIMEOUT_ERROR = 10  # Threshold
-
-
-def raise_timeout(_, frame):
-    raise TimeoutError
-
+TIMEOUT_THRESHOLD = 10  # Threshold
 
 async def root(request):
     if request.method == "POST":
@@ -26,39 +22,30 @@ async def root(request):
 
     await request.app.model_queue.put((video_id, response_queue))
 
-    output = await response_queue.get()
-    return JSONResponse(output)
+    output: tuple = await response_queue.get()
+    return JSONResponse(output[0], status_code=output[1])
 
 
 async def server_loop(model_queue: asyncio.Queue, analyser: AnalysisSingleton, cp: CommentProcessor):
     while True:
         (video_id, response_queue) = await model_queue.get()
-        top_comments = cp.get_comment_threads(video_id)
-        out = {
-            "sentiment_analysis": analyser.calculate_sentiment_statistics(top_comments),
-            "emotion_analysis": analyser.calculate_emotion_statistics(top_comments),
-            "sarcasm_analysis": analyser.calculate_sarcasm_score(top_comments),
-        }
-        await response_queue.put(out)
+        try:
+            top_comments = await asyncio.wait_for(asyncio.to_thread(cp.get_comment_threads, video_id), timeout=TIMEOUT_THRESHOLD)
+            out = await asyncio.wait_for(asyncio.to_thread(analyser.process_comment_list, top_comments), timeout=TIMEOUT_THRESHOLD)
+            await response_queue.put(out)
+        except asyncio.TimeoutError:
+            failed_request = {"error": "Request or processing timed out"}
+            await response_queue.put((failed_request, 504))
+        except HttpError:
+            failed_request = {"error": "Failed to crawl YouTube comments"}
+            await response_queue.put((failed_request, 404))
+        except Exception as e:
+            print(f"Error occurred processing {video_id}: {e}")
+            failed_request = {"error": "Unhandled exception encountered!"}
+            await response_queue.put((failed_request, 500))
 
 
 app = Starlette(routes=[Route("/", root, methods=["POST"]), Route("/{videoId}", root, methods=["GET"])])
-
-
-# Adding a middleware returning a 504 error if the request processing time is above a certain threshold
-@app.middleware("http")
-async def timeout_middleware(request, call_next):
-    try:
-        start_time = time.time()
-        return await asyncio.wait_for(call_next(request), timeout=REQUEST_TIMEOUT_ERROR)
-
-    except asyncio.TimeoutError:
-        process_time = time.time() - start_time
-        return JSONResponse(
-            {"detail": "Request processing time excedeed limit", "processing_time": process_time},
-            status_code=HTTP_504_GATEWAY_TIMEOUT,
-        )
-
 
 @app.on_event("startup")
 async def startup_event():
