@@ -1,11 +1,19 @@
 from starlette.applications import Starlette
 from starlette.responses import JSONResponse
 from starlette.routing import Route
+from starlette.status import HTTP_504_GATEWAY_TIMEOUT
 from transformers import pipeline
 from analysis import AnalysisSingleton
 from comments import CommentProcessor
 import asyncio
 import json
+import time
+
+REQUEST_TIMEOUT_ERROR = 10  # Threshold
+
+
+def raise_timeout(_, frame):
+    raise TimeoutError
 
 
 async def root(request):
@@ -35,6 +43,21 @@ async def server_loop(model_queue: asyncio.Queue, analyser: AnalysisSingleton, c
 
 
 app = Starlette(routes=[Route("/", root, methods=["POST"]), Route("/{videoId}", root, methods=["GET"])])
+
+
+# Adding a middleware returning a 504 error if the request processing time is above a certain threshold
+@app.middleware("http")
+async def timeout_middleware(request, call_next):
+    try:
+        start_time = time.time()
+        return await asyncio.wait_for(call_next(request), timeout=REQUEST_TIMEOUT_ERROR)
+
+    except asyncio.TimeoutError:
+        process_time = time.time() - start_time
+        return JSONResponse(
+            {"detail": "Request processing time excedeed limit", "processing_time": process_time},
+            status_code=HTTP_504_GATEWAY_TIMEOUT,
+        )
 
 
 @app.on_event("startup")
