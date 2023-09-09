@@ -1,6 +1,15 @@
 from collections import defaultdict
-from transformers import pipeline
-from multiprocessing import Pool, cpu_count
+from optimum.onnxruntime import (
+    AutoQuantizationConfig,
+    AutoOptimizationConfig,
+    ORTModelForSequenceClassification,
+    ORTQuantizer,
+    ORTOptimizer
+)
+from transformers import AutoTokenizer
+from optimum.pipelines import pipeline
+import time
+import json
 
 
 class AnalysisSingleton:
@@ -14,6 +23,23 @@ class AnalysisSingleton:
 
     def init_pipelines(self):
         self.sentiment_pipeline = pipeline(
+            task="text-classification",
+            # model="cardiffnlp/twitter-roberta-base-sentiment-latest",
+            accelerator="ort"
+        )
+
+        self.emotion_pipeline = pipeline(
+            task="text-classification",
+            model="j-hartmann/emotion-english-distilroberta-base",
+            accelerator="ort"
+        )
+
+        self.sarcasm_pipeline = pipeline(
+            task="text-classification",
+            model="jkhan447/sarcasm-detection-RoBerta-base-CR",
+            accelerator="ort"
+        )
+        
             "sentiment-analysis", model="cardiffnlp/twitter-roberta-base-sentiment-latest"
         )
 
@@ -97,28 +123,27 @@ class AnalysisSingleton:
             final_results[label] = (average_score, values[1])
 
         return final_results
+    
+    def calculate_sarcasm_score(self, comment_list: list[str]) -> float:
 
-    def calculate_derision_statistics(self, comment_list: list[str]) -> dict:
         """
-        Calculate spread of sarcasm in a comment list.
+        Calculates proportion of comments which are sarcastic
 
         :comment_list: A list of comments.
 
-        :returns: A dictionary containing counts for derision and normal comments.
-                Keys are "normal", "derision", and the values are ints
+        :returns: A float, representing proportion of comments which are sarcastic
         """
-        # Store derision counts
-        sarcasm_stats = defaultdict(lambda: 0)
+        # Store number of comments that are sarcastic
+        sarcasm_score = 0
 
         sarcasm_results = self.sarcasm_pipeline(comment_list)
 
         # Process sarcasm results and update derision statistics
         for result in sarcasm_results:
-            label = result["generated_text"]
-            # Model produces a spelling error
-            label = "derision" if "derison" in label else "normal"
-            sarcasm_stats[label] += 1
+            label = result["label"]
+            sarcasm_score += int(label == "LABEL_1")
 
-        final_results = dict(sarcasm_stats)
+        sarcasm_score /= len(comment_list)
 
-        return final_results
+        return sarcasm_score
+

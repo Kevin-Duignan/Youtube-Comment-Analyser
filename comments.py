@@ -1,7 +1,16 @@
 from googleapiclient.discovery import build
 import json
-from analysis import AnalysisSingleton
 import time
+from optimum.onnxruntime import (
+    AutoQuantizationConfig,
+    AutoOptimizationConfig,
+    ORTModelForSequenceClassification,
+    ORTQuantizer,
+    ORTOptimizer
+)
+from transformers import AutoTokenizer
+from optimum.pipelines import pipeline
+from pathlib import Path
 
 
 class CommentProcessor:
@@ -67,6 +76,70 @@ class CommentProcessor:
 
 
 if __name__ == "__main__":
+    # with open("config.json", "r") as jsonfile:
+    #     data = json.load(jsonfile)
+    # cp = CommentProcessor(data["api_key"])
+    # comments = cp.get_comment_threads("lSD_L-xic9o")
+    
+    # model_id = "j-hartmann/emotion-english-distilroberta-base"
+    # onnx_path = Path("onnx")
+    # task = "text-classification"
+
+    # model = ORTModelForSequenceClassification.from_pretrained(model_id)
+    # tokenizer = AutoTokenizer.from_pretrained(model_id)
+    
+    # model.save_pretrained(onnx_path)
+    # tokenizer.save_pretrained(onnx_path)
+    
+    # optimizer = ORTOptimizer.from_pretrained(model_id)
+    # optimization_config = AutoOptimizationConfig.O3()
+    # optimizer.optimize(save_dir=save_dir, optimization_config=optimization_config)
+    # optimizer.(
+    #     onnx_model_path=onnx_path / "model.onnx",
+    #     onnx_optimized_model_output_path=onnx_path / "model-optimized.onnx",
+    #     optimization_config=optimization_config,
+    # )
+
+    # qconfig = AutoQuantizationConfig.avx512_vnni(is_static=False, per_channel=True)
+    # quantizer = ORTQuantizer.from_pretrained(model)
+
+    # quantizer.quantize(save_dir=save_dir, quantization_config=qconfig)
+
+    # model = ORTModelForSequenceClassification.from_pretrained(save_dir)
+
+    # onnx_clx = pipeline("text-classification", model=model, accelerator="ort")
+    # start = time.time()
+    # pred = onnx_clx(comments)
+    # print(pred)
+    # end = time.time()
+    # print(str(end - start) + "seconds")
+    
+    # model.save_pretrained("test2")
+    
+    # # optimization 
+    
+    # model = ORTModelForSequenceClassification.from_pretrained("test2", from_pt=True)
+    
+    # optimization_config = AutoOptimizationConfig.O3()
+    # optimizer = ORTOptimizer.from_pretrained(model)
+    
+    # save_dir = "test3"
+    
+    # optimizer.optimize(save_dir=save_dir, optimization_config=optimization_config)
+    
+    # model = ORTModelForSequenceClassification.from_pretrained(save_dir)
+    
+    # onnx_clx = pipeline("text-classification", model=model, accelerator="ort")
+    
+    # start = time.time()
+    # pred = onnx_clx(comments)
+    # print(pred)
+    # end = time.time()
+    # print(str(end - start) + "seconds")
+    
+    # tokenizer.save_pretrained("test4")
+    # model.save_pretrained("test4")
+    
     start = time.time()
     with open("config.json", "r") as jsonfile:
         data = json.load(jsonfile)
