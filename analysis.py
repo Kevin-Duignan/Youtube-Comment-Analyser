@@ -13,42 +13,25 @@ class AnalysisSingleton:
         return cls._instance
 
     def init_pipelines(self):
-        with Pool(cpu_count()) as pool:
-            self.sentiment_pipeline = pool.apply_async(
-                pipeline,
-                args=("sentiment-analysis",),
-                kwds={
-                    "model": "cardiffnlp/twitter-roberta-base-sentiment-latest",
-                    "device": -1,
-                    "batch_size": 1,
-                },
-            )
+        self.sentiment_pipeline = pipeline(
+            "sentiment-analysis", model="cardiffnlp/twitter-roberta-base-sentiment-latest"
+        )
 
-            self.emotion_pipeline = pool.apply_async(
-                pipeline,
-                args=("emotion-analysis",),
-                kwds={
-                    "model": "cardiffnlp/twitter-roberta-base-emotion-latest",
-                    "device": -1,
-                    "batch_size": 1,
-                },
-            )
+        self.emotion_pipeline = pipeline("sentiment-analysis", model="j-hartmann/emotion-english-distilroberta-base")
 
-            self.sarcasm_pipeline = pool.apply_async(
-                pipeline,
-                args=("sarcasm-analysis",),
-                kwds={
-                    "model": "cardiffnlp/twitter-roberta-base-sarcasm-latest",
-                    "device": -1,
-                    "batch_size": 1,
-                },
-            )
+        self.sarcasm_pipeline = pipeline("text2text-generation", model="mrm8488/t5-base-finetuned-sarcasm-twitter")
 
-    def concurrent_analysis(self, comment_list):
-        with Pool(cpu_count()) as pool:
-            sentiment_results = pool.apply_async(self.calculate_sentiment_statistics, (comment_list,))
-            emotion_results = pool.apply_async(self.calculate_emotion_statistics, (comment_list,))
-            derision_results = pool.apply_async(self.calculate_derision_statistics, (comment_list,))
+    def run_analysis(self, comment_list):
+        # with Pool(cpu_count()) as pool:
+        #     sentiment_results = pool.apply_async(self.calculate_sentiment_statistics, (comment_list,))
+        #     emotion_results = pool.apply_async(self.calculate_emotion_statistics, (comment_list,))
+        #     derision_results = pool.apply_async(self.calculate_derision_statistics, (comment_list,))
+        #     pool.close()
+        #     pool.join()
+
+        sentiment_results = self.calculate_sentiment_statistics(comment_list)
+        emotion_results = self.calculate_emotion_statistics(comment_list)
+        derision_results = self.calculate_derision_statistics(comment_list)
 
         # Combine the results from all the analysis into a single dictionary
         combined_results = {

@@ -73,7 +73,7 @@ if __name__ == "__main__":
     cp = CommentProcessor(data["api_key"])
     comments = cp.get_comment_threads("lSD_L-xic9o")
     analyser = AnalysisSingleton()
-    res = analyser.concurrent_analysis(comments)
+    res = analyser.run_analysis(comments)
     end = time.time()
     print(str(end - start) + " seconds")
     print(res)
