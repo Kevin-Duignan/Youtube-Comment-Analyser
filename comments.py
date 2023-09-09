@@ -1,5 +1,7 @@
 from googleapiclient.discovery import build
 import json
+from analysis import AnalysisSingleton
+import time
 
 
 class CommentProcessor:
@@ -68,4 +70,14 @@ if __name__ == "__main__":
     with open("config.json", "r") as jsonfile:
         data = json.load(jsonfile)
     cp = CommentProcessor(data["api_key"])
-    print(cp.get_comment_threads("lSD_L-xic9o"))
+    comments = cp.get_comment_threads("lSD_L-xic9o")
+    analyser = AnalysisSingleton()
+    start = time.time()
+    res = [
+        analyser.calculate_sentiment_statistics(comments),
+        analyser.calculate_emotion_statistics(comments),
+        analyser.calculate_derision_statistics(comments),
+    ]
+    end = time.time()
+    print(str(end - start) + "seconds")
+    print(res)

@@ -14,6 +14,13 @@ youtube = build("youtube", "v3", developerKey=api_key)
 def get_comments(video_id: str):
     cp = CommentProcessor(api_key)
     top_comments = cp.get_comment_threads(video_id)
+    analyser = AnalysisSingleton()
+    res = [
+        analyser.calculate_sentiment_statistics(top_comments),
+        analyser.calculate_emotion_statistics(top_comments),
+        analyser.calculate_derision_statistics(top_comments),
+    ]
+    print(res)
     return jsonify(top_comments)
 
 
