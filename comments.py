@@ -2,6 +2,7 @@ from googleapiclient.discovery import build
 import json
 from analysis import AnalysisSingleton
 import time
+from analysis import AnalysisSingleton
 
 
 class CommentProcessor:
@@ -41,7 +42,8 @@ class CommentProcessor:
             comment_data = item["snippet"]["topLevelComment"]["snippet"]
 
             if not rich_comment:
-                res.append(comment_data["textOriginal"])
+                if len(comment_data["textOriginal"]) < 512: # Smallest Bert model can only take tokens of 512 chars
+                    res.append(comment_data["textOriginal"])
                 continue
 
             comment = {
@@ -67,13 +69,21 @@ class CommentProcessor:
 
 
 if __name__ == "__main__":
-    start = time.time()
     with open("config.json", "r") as jsonfile:
         data = json.load(jsonfile)
     cp = CommentProcessor(data["api_key"])
-    comments = cp.get_comment_threads("lSD_L-xic9o")
+    comments = cp.get_comment_threads("OYS3rUZFyM4")
     analyser = AnalysisSingleton()
-    res = analyser.run_analysis(comments)
+
+    start = time.time()
+    res = [
+            analyser.calculate_sentiment_statistics(comments),
+            analyser.calculate_emotion_statistics(comments),
+            analyser.calculate_sarcasm_score(comments),
+        ]
     end = time.time()
-    print(str(end - start) + " seconds")
+    
     print(res)
+    
+    print(f"Took {end-start} seconds!")
+
