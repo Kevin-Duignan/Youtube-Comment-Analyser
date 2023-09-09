@@ -13,6 +13,7 @@ const server_port = "8080";
 
 // Server responses to compare against
 const response_wait_str = "";
+const response_timeout_error = "";
 
 // How long to wait in between requests to the server, in milliseconds
 const request_time_interval = 1000;
@@ -30,25 +31,26 @@ function init(){
   video_id = url.searchParams.get("v");
   console.log("[YouTube Comment Analyser] Video ID:", video_id);
   
-  //sendVideoID(video_id);
+  sendVideoID(video_id);
   
   // For testing purposes
-  displayResults([
-    {
-      'positive': (0.6062167062092636, 81),
-      'negative': (0.061384336928189814, 11),
-      'neutral': (0.1496163114147671, 26)},
-    {
-      'joy': (0.25913033192440615, 40),
-      'neutral': (0.2532283413713261, 44),
-      'fear': (0.01478036834021746, 2),
-      'anger': (0.03627788161827346, 7),
-      'surprise': (0.10265902593984443, 18),
-      'sadness': (0.027251392350358478, 5),
-      'disgust': (0.009597580059100006, 2)
-    },
-    {'normal': 95, 'derision': 23}
-  ]);
+  //displayResults(JSON.parse(`{
+  //  "sentiment_analysis": {
+  //    "neutral":[0.23193239296476045,39],
+  //    "negative":[0.1323493428528309,22],
+  //    "positive":[0.42666757603486377,59]
+  //  },
+  //  "emotion_analysis": {
+  //    "neutral":[0.2952854464451472,50],
+  //    "sadness":[0.06265809759497643,11],
+  //    "joy":[0.19916577686866124,30],
+  //    "surprise":[0.11126488372683525,19],
+  //    "disgust":[0.026280804226795833,5],
+  //    "anger":[0.02251772830883662,4],
+  //    "fear":[0.003449420134226481,1]
+  //  },
+  //  "sarcasm_analysis": 0.0
+  //}`));
   
 }
 
@@ -72,8 +74,10 @@ function sendVideoID(id){
     }
   };
   
-  xmlhttp.open("GET", "http://"+server_address+":"+server_port + "?videoId="+id, true);
+  xmlhttp.open("GET", "http://"+server_address+":"+server_port + "/" + id, true);
   xmlhttp.send();
+  
+  console.log("[YouTube Comment Analyser]", xmlhttp);
   
 }
 
@@ -93,6 +97,9 @@ function checkServerStatus(){
     }
     if(this.status == 500){
       console.error("A server error occurred.");
+    }
+    if(this.status == 504){
+      console.error("Server timed out.");
     }
   };
   
@@ -114,6 +121,9 @@ function handleServerResponse(response_text){
       },
       request_time_interval
     );
+    
+  } else if(response_text == response_timeout_error) {
+    console.error("Server reported timeout.");
     
   } else {
     // Assume that if a particular response was not given, then the server returned valid JSON data which contains the sentiment analysis results.
@@ -157,6 +167,16 @@ function displayResults(results){
     return;
   }
   
+  // Process the data
+  var total_comments = results.sentiment_analysis.positive[1] + results.sentiment_analysis.neutral[1] + results.sentiment_analysis.negative[1];
+  var percent_positive = Math.round(results.sentiment_analysis.positive[1] / total_comments * 100);
+  var percent_neutral  = Math.round(results.sentiment_analysis.neutral[1]  / total_comments * 100);
+  var percent_negative = Math.round(results.sentiment_analysis.negative[1] / total_comments * 100);
+  
+  var percent_emotion0 = Math.round(Object.values(results.emotion_analysis)[0][1] / total_comments * 100);
+  var percent_emotion1 = Math.round(Object.values(results.emotion_analysis)[1][1] / total_comments * 100);
+  var percent_emotion2 = Math.round(Object.values(results.emotion_analysis)[2][1] / total_comments * 100);
+  
   // Create the container for the analysis results
   var analysis_container = document.createElement("div");
   analysis_container.id = "analyser-container";
@@ -165,11 +185,62 @@ function displayResults(results){
   
   // Create the header
   var analysis_header = document.createElement("span");
-  analysis_header.is = "analysis-header";
+  analysis_header.id = "analysis-header";
   analysis_header.classList.add("analyser-text");
   analysis_header.classList.add("analyser-header-text");
   analysis_header.innerHTML = "Comment Analysis:";
   analysis_container.appendChild(analysis_header);
+  
+  var analysis_container_h_flex = document.createElement("div");
+  analysis_container_h_flex.classList.add("analysis-horizontal-flex");
+  
+  // Create the sentiment analysis container
+  var analysis_sentiment_container = document.createElement("div");
+  analysis_sentiment_container.id = "analysis-sentiment-display";
+  analysis_sentiment_container.classList.add("analysis-data-container");
+  
+  var analysis_sentiment_text = document.createElement("span");
+  analysis_sentiment_text.id = "analysis-sentiment-text";
+  analysis_sentiment_text.classList.add("analyser-text");
+  analysis_sentiment_text.classList.add("analyser-content-text");
+  var sentiment_string =       percent_positive + "% of comments are positive.";
+  sentiment_string += "<br>" + percent_neutral + "% of comments are neutral.";
+  sentiment_string += "<br>" + percent_negative + "% of comments are negative.";
+  analysis_sentiment_text.innerHTML = sentiment_string;
+  analysis_sentiment_container.appendChild(analysis_sentiment_text);
+  analysis_container_h_flex.appendChild(analysis_sentiment_container);
+  
+  // Create the emotion analysis container
+  var analysis_emotion_container = document.createElement("div");
+  analysis_emotion_container.id = "analysis-emotion-display";
+  analysis_emotion_container.classList.add("analysis-data-container");
+  
+  var analysis_emotion_text = document.createElement("span");
+  analysis_emotion_text.id = "analysis-emotion-text";
+  analysis_emotion_text.classList.add("analyser-text");
+  analysis_emotion_text.classList.add("analyser-content-text");
+  var sentiment_string =       percent_emotion0 + "% of comments are " + Object.keys(results.emotion_analysis)[0] + ".";
+  sentiment_string += "<br>" + percent_emotion1 + "% of comments are " + Object.keys(results.emotion_analysis)[1] + ".";
+  sentiment_string += "<br>" + percent_emotion2 + "% of comments are " + Object.keys(results.emotion_analysis)[2] + ".";
+  analysis_emotion_text.innerHTML = sentiment_string;
+  analysis_emotion_container.appendChild(analysis_emotion_text);
+  analysis_container_h_flex.appendChild(analysis_emotion_container);
+  
+  // Create the sarcasm analysis container
+  var analysis_sarcasm_container = document.createElement("div");
+  analysis_sarcasm_container.id = "analysis-emotion-display";
+  analysis_sarcasm_container.classList.add("analysis-data-container");
+  
+  var analysis_sarcasm_text = document.createElement("span");
+  analysis_sarcasm_text.id = "analysis-emotion-text";
+  analysis_sarcasm_text.classList.add("analyser-text");
+  analysis_sarcasm_text.classList.add("analyser-content-text");
+  var sentiment_string = results.sarcasm_analysis + "% of comments are sarcastic.";
+  analysis_sarcasm_text.innerHTML = sentiment_string;
+  analysis_sarcasm_container.appendChild(analysis_sarcasm_text);
+  analysis_container_h_flex.appendChild(analysis_sarcasm_container);
+  
+  analysis_container.appendChild(analysis_container_h_flex);
   
   // Add the analysis container to the DOM
   var comment_header = document.getElementById("sections").firstElementChild.firstElementChild;
