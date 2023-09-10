@@ -19,7 +19,7 @@ youTubeCommentAnalyser is an extension/website that parses through the comments 
 1. Download ZIP of GitHub, or run `git clone https://github.com/Kevin-Duignan/MACathon-noname`
 2. Open Zip
 3. Open Chrome, or a Chromium browser
-4. Visit [chrome://extensions/]
+4. Visit your browser's [extensions page](chrome://extensions/)
 5. Turn on Developer Mode
 6. Load Unpacked
 7. Select the _extension_ folder in the project directory
@@ -36,6 +36,8 @@ $ cd MACathon-noname
 $ pip install -r requirements.txt
 $ uvicorn server:app
 ```
+
+The server will download and optimise all NLP models on first boot. This will take some time and extra disk space (~2GB).
 
 ## Contributors
 
