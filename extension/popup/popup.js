@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", function () {
       
             ring.style.strokeDashoffset = offset;
             spans[index].textContent = `${percentage.toFixed(0)}%`;
-            circleTexts[index].innerHTML = `<strong>${lables[index]}</strong> Comments : <strong>${confidence.toFixed(0)}%</strong> Confidence`;
+            circleTexts[index].innerHTML = `<strong>${confidence.toFixed(0)}%</strong> Confidence`;
             circleTexts[index].style.fontFamily = "Helvetica";
           });
         })
