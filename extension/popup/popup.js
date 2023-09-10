@@ -64,28 +64,21 @@ document.addEventListener("DOMContentLoaded", function () {
       
           const sentimentAnalysis = commentData.sentiment_analysis;
       
-          // Update circles for sentiment analysis
-          const sentimentValues = Object.values(sentimentAnalysis);
-      
-          // Calculate the total sum of values
-          const totalCount = sentimentValues.reduce(
-            (acc, [value, count]) => acc + count,
-            0
-          );
-      
-          // Calculate percentages based on values
-          const percentages = sentimentValues.map(
-            ([value, count]) => (count / totalCount) * 100
-          );
+          console.log(sentimentAnalysis)
 
-          const confidences = sentimentValues.map(
-            ([value, count]) => value * 100
-          )
+          let total_comments = sentimentAnalysis.positive[1] + sentimentAnalysis.neutral[1] + sentimentAnalysis.negative[1]
+          let percent_positive = Math.round(sentimentAnalysis.positive[1] / total_comments * 100);
+          let positive_confidence = sentimentAnalysis.positive[0] * 100
+          let percent_neutral  = Math.round(sentimentAnalysis.neutral[1]  / total_comments * 100);
+          let neutral_confidence = sentimentAnalysis.neutral[0] * 100
+          let percent_negative = Math.round(sentimentAnalysis.negative[1] / total_comments * 100);
+          let negative_confidence = sentimentAnalysis.negative[0] * 100
+          let percentages = [percent_positive, percent_negative, percent_neutral];
+          let confidences = [positive_confidence, negative_confidence, neutral_confidence]
       
           const rings = document.querySelectorAll(".ring circle");
           const spans = document.querySelectorAll(".circle span");
           const circleTexts = document.querySelectorAll(".circle-text");
-          const lables = ["Positive", "Negative", "Neutral"]
       
           rings.forEach((ring, index) => {
             const percentage = percentages[index];
