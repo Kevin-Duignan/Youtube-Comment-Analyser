@@ -72,13 +72,13 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: #3498db;
+  color: #1c232b;
   font-weight: bold;
   background-color: #fff;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
   position: relative;
-  margin-left: 5px;
-  margin-right: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .analysis-circle-container > span {
@@ -113,5 +113,25 @@
 
 .analysis-circle-red {
   stroke: #e74c3c;
+}
+
+
+
+#analysis-emotion-display {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#analysis-emotion-text {
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1.2;
+  display: block;
+  text-align: center;
 }
 
