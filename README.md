@@ -1,4 +1,4 @@
-\*\*\*\*![](assets/20230910_174550_logo.svg)
+![](assets/20230910_174550_logo.svg)
 
 # MACathon 2023 Project Submission
 
