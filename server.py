@@ -79,13 +79,14 @@ async def site_post(request):
     max_count = 0
     for key in analysis["emotion_analysis"].keys():
         # count of each emotion
-        if analysis["emotion_analysis"][key][1] > max_count and key != "neutral":
+        if int(analysis["emotion_analysis"][key][1]) > max_count and key != "neutral":
             template_output["strongest_emotion"] = key.title()
+            max_count = int(analysis["emotion_analysis"][key][1])
 
     if template_output["strongest_emotion"] == "Anger":
         template_output["emotion_emoji"] = 128545
     elif template_output["strongest_emotion"] == "Joy":
-        template_output["emotion_emoji"] = 128514
+        template_output["emotion_emoji"] = 128513
     elif template_output["strongest_emotion"] == "Disgust":
         template_output["emotion_emoji"] = 129314
     elif template_output["strongest_emotion"] == "Sadness":
