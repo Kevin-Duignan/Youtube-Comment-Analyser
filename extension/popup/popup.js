@@ -36,17 +36,22 @@ document.addEventListener("DOMContentLoaded", function () {
           // Add bars to the bar chart
           const barChart = document.querySelector(".bar-chart");
           barChartData.forEach((data) => {
+            const container = document.createElement("div");
+            container.className = "bar-container";
+          
             const bar = document.createElement("div");
             bar.className = "bar";
             bar.style.width = `${data.value}%`;
             bar.style.backgroundColor = "#008cff";
-      
+          
             const label = document.createElement("div");
             label.className = "label";
             label.textContent = `${data.label}: ${data.value.toFixed(0)}%`;
-      
-            barChart.appendChild(label);
-            barChart.appendChild(bar);
+            label.style.textAlign = "left";
+          
+            container.appendChild(label);
+            container.appendChild(bar);
+            barChart.appendChild(container);
           });
       
           // Update the sarcasm detection bar
