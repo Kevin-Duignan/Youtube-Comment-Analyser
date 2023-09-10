@@ -10,7 +10,7 @@ youTubeCommentAnalyser is an extension/website that parses through the comments 
 
 ### Website
 
-1. Visit our [http://158.179.17.136:8080](website)
+1. Visit our [website](http://158.179.17.136:8080)
 2. Paste in a valid YouTube URL to a specific video
 3. Get the sentiment analysis of the comments, with the link to the video!
 
