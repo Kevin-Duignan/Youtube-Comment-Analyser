@@ -15,6 +15,7 @@
   "permissions": [
     "webNavigation",
     "activeTab",
+    "tabs",
     "*://*.youtube.com/*",
     "*://158.179.17.136:8080/*"
   ],
