@@ -8,7 +8,24 @@ class CommentProcessor:
         self.API_KEY = api_key
         self.youtube_service = build("youtube", "v3", developerKey=api_key)
 
-    def get_comment_threads(self, videoID: str, pages: int = 1, rich_comment: bool = False) -> list[str]:
+    def get_comment_threads(self, videoID: str, pages: int = 1, rich_comment: bool = False) -> list[str]|list[dict]:
+        """
+        Fetches comment threads for a given YouTube video.
+        
+        :videoID (str): The ID of the YouTube video for which to retrieve comments.
+        :pages (int, optional): The number of pages of comments to retrieve. Defaults to 1.
+        :rich_comment (bool, optional): Whether to retrieve rich comments. Defaults to False.
+
+        :returns: A list of comment threads.
+
+        This method retrieves comment threads for a specific YouTube video and returns them as a list of strings.
+        Comment threads can be paginated, and the `pages` argument specifies how many pages of comments to retrieve.
+        If `rich_comment` is set to True, rich comments will be included in the results (replies, likes, etc.).
+
+        Note:
+        - Google's API has a limit on the maximum number of results per request.
+        - The total number of comments retrieved may be less than `pages` * 100 if the video has fewer comments.
+        """
         comments_list = []
 
         request = self.youtube_service.commentThreads().list(
@@ -34,7 +51,25 @@ class CommentProcessor:
 
         return comments_list
 
-    def _process_comments(self, response: dict, rich_comment: bool = False) -> list[str]:
+    def _process_comments(self, response: dict, rich_comment: bool = False) -> list[str]|list[dict]:
+        """
+        Process comment data from the YouTube API response.
+
+        :response (dict): The response from the YouTube API containing comment data.
+        :rich_comment (bool, optional): Whether to include rich comment data. Defaults to False.
+
+        :returns: list[str] or list[dict]: A list of comment text strings or a list of comment dictionaries,
+        depending on the value of `rich_comment`.
+
+        This method extracts and processes comment data from the YouTube API response.
+        If `rich_comment` is set to False, it extracts and returns a list of comment text strings.
+        If `rich_comment` is set to True, it extracts and returns a list of comment dictionaries,
+        including author information, publication time, text, likes, and replies (if available).
+
+        Note:
+        - The smallest BERT model can only handle tokens of up to 512 characters, so comments exceeding
+        this length are excluded when `rich_comment` is False.
+        """
         res = []
         for item in response["items"]:
             comment_data = item["snippet"]["topLevelComment"]["snippet"]
@@ -64,7 +99,6 @@ class CommentProcessor:
             res.append(comment)
 
         return res
-
 
 if __name__ == "__main__":
     with open("config.json", "r") as jsonfile:

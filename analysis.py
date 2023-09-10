@@ -21,6 +21,12 @@ class AnalysisSingleton:
         return cls._instance
 
     def init_pipelines(self):
+        """
+        Initializes text classification pipelines for sentiment analysis, emotion analysis, and sarcasm detection.
+
+        Downloads, optimizes, and quantizes the required models if they do not exist locally and initialises
+        the pipelines using the optimized and quantized models.
+        """
         sentiment_path = Path("onnx", "sentiment")
         emotion_path = Path("onnx", "emotion")
         sarcasm_path = Path("onnx", "sarcasm")
@@ -62,6 +68,12 @@ class AnalysisSingleton:
         )
 
     def _optimize_and_quantize_model(self, model_id: str, export_path: Path):
+        """
+        Downloads, optimizes, and quantizes a model using ONNX Runtime (ORT).
+
+        :model_id (str): The ID or name of the pretrained model to download.
+        :export_path (Path): The path where the optimized and quantized model will be saved.
+        """
         print(f"{export_path} missing! Downloading {model_id}...")
 
         model = ORTModelForSequenceClassification.from_pretrained(model_id, export=True)
@@ -91,6 +103,19 @@ class AnalysisSingleton:
         print(f"{model_id} optimized in quantized into {export_path} !")
 
     def process_comment_list(self, comment_list: list[str]) -> dict:
+        """
+        Process a list of comments and perform sentiment analysis, emotion analysis, and sarcasm analysis.
+
+        :comment_list (list[str]): A list of comments to analyse.
+
+        :returns:
+            tuple: A tuple containing the analysis results as a dictionary and an HTTP status code.
+                The dictionary contains the following keys:
+                - "sentiment_analysis": Result of sentiment analysis.
+                - "emotion_analysis": Result of emotion analysis.
+                - "sarcasm_analysis": Result of sarcasm analysis.
+                The HTTP status code is 200, a successful operation.
+        """
         content = {
             "sentiment_analysis": self.calculate_sentiment_statistics(comment_list),
             "emotion_analysis": self.calculate_emotion_statistics(comment_list),

@@ -19,6 +19,9 @@ function init(){
   
   let url = new URL(window.location.href);
   let video_id = url.searchParams.get("v");
+  if(video_id == undefined){
+    return;
+  }
   console.log("[YouTube Comment Analyser] Video ID:", video_id);
   
   // Request information from the server via the background worker
@@ -76,12 +79,19 @@ function displayResults(results){
   analysis_container.classList.add("ytd-comments-header-renderer");
   
   // Create the header
-  let analysis_header = document.createElement("span");
-  analysis_header.id = "analysis-header";
-  analysis_header.classList.add("analyser-text");
-  analysis_header.classList.add("analyser-header-text");
-  analysis_header.innerHTML = "Comment Analysis:";
-  analysis_container.appendChild(analysis_header);
+  //let icon_URL = chrome.runtime.getURL("popup/logo.svg");
+  //console.log(icon_URL);
+  //let analysis_header_icon = document.createElement("img");
+  //analysis_header_icon.src = icon_URL;
+  //analysis_header_icon.height = "64";
+  //analysis_container.appendChild(analysis_header_icon);
+  
+  //let analysis_header = document.createElement("span");
+  //analysis_header.id = "analysis-header";
+  //analysis_header.classList.add("analyser-text");
+  //analysis_header.classList.add("analyser-header-text");
+  //analysis_header.innerHTML = "Comment Analysis:";
+  //analysis_container.appendChild(analysis_header);
   
   let analysis_container_h_flex = document.createElement("div");
   analysis_container_h_flex.classList.add("analysis-horizontal-flex");
@@ -149,35 +159,21 @@ function createSentimentDisplay(results){
     
   }
   
-  //let analysis_sentiment_text = document.createElement("span");
-  //analysis_sentiment_text.id = "analysis-sentiment-text";
-  //analysis_sentiment_text.classList.add("analyser-text");
-  //analysis_sentiment_text.classList.add("analyser-content-text");
-  //let sentiment_string =       percent_positive + "% of comments are positive.";
-  //sentiment_string += "<br>" + percent_neutral + "% of comments are neutral.";
-  //sentiment_string += "<br>" + percent_negative + "% of comments are negative.";
-  //analysis_sentiment_text.innerHTML = sentiment_string;
-  //analysis_sentiment_container.appendChild(analysis_sentiment_text);
-  
   return analysis_sentiment_container;
   
 }
 
 function createEmotionDisplay(results){
   
-  // Process the data
-  let total_comments = results.sentiment_analysis.positive[1] + results.sentiment_analysis.neutral[1] + results.sentiment_analysis.negative[1];
-  let percent_emotion0 = Math.round(Object.values(results.emotion_analysis)[0][1] / total_comments * 100);
-  let percent_emotion1 = Math.round(Object.values(results.emotion_analysis)[1][1] / total_comments * 100);
-  let percent_emotion2 = Math.round(Object.values(results.emotion_analysis)[2][1] / total_comments * 100);
-  
   // Get the strongest emotion
   let strongest_emotion_index = 0;
   let strongest_emotion_name = "";
+  let strongest_emotion_count = 0;
   for(var e = 0; e < Object.keys(results.emotion_analysis).length; e ++){
-    if(Object.values(results.emotion_analysis)[e][1] > Object.values(results.emotion_analysis)[strongest_emotion_index][1] && Object.keys(results.emotion_analysis)[e] != "neutral"){
+    if(Object.values(results.emotion_analysis)[e][1] > strongest_emotion_count && Object.keys(results.emotion_analysis)[e] != "neutral"){
       strongest_emotion_index = e;
       strongest_emotion_name = Object.keys(results.emotion_analysis)[e];
+      strongest_emotion_count = Object.values(results.emotion_analysis)[e][1];
     }
   }
   let emotion_emojis = {
@@ -199,9 +195,6 @@ function createEmotionDisplay(results){
   analysis_emotion_text.classList.add("analyser-text");
   analysis_emotion_text.classList.add("analyser-content-text");
   let emotion_string = "Strongest Emotion:<br>" + strongest_emotion_name.charAt(0).toUpperCase() + strongest_emotion_name.slice(1) + " " + emotion_emojis[strongest_emotion_name];
-  //let emotion_string =       percent_emotion0 + "% of comments are " + Object.keys(results.emotion_analysis)[0] + ".";
-  //emotion_string += "<br>" + percent_emotion1 + "% of comments are " + Object.keys(results.emotion_analysis)[1] + ".";
-  //emotion_string += "<br>" + percent_emotion2 + "% of comments are " + Object.keys(results.emotion_analysis)[2] + ".";
   analysis_emotion_text.innerHTML = emotion_string;
   analysis_emotion_container.appendChild(analysis_emotion_text);
   
@@ -211,18 +204,32 @@ function createEmotionDisplay(results){
 
 function createSarcasmDisplay(results){
   
+  const sarcasm_percentage = Math.round(results.sarcasm_analysis * 100);
+  
   // Create the sarcasm analysis container
   let analysis_sarcasm_container = document.createElement("div");
-  analysis_sarcasm_container.id = "analysis-emotion-display";
+  analysis_sarcasm_container.id = "analysis-sarcasm-display";
   analysis_sarcasm_container.classList.add("analysis-data-container");
   
-  let analysis_sarcasm_text = document.createElement("span");
-  analysis_sarcasm_text.id = "analysis-sarcasm-text";
-  analysis_sarcasm_text.classList.add("analyser-text");
-  analysis_sarcasm_text.classList.add("analyser-content-text");
-  let sarcasm_string = Math.round(results.sarcasm_analysis*100) + "% of comments are sarcastic.";
-  analysis_sarcasm_text.innerHTML = sarcasm_string;
-  analysis_sarcasm_container.appendChild(analysis_sarcasm_text);
+  let subheader = document.createElement("div");
+  subheader.id = "analysis-sarcasm-header";
+  subheader.classList.add("analyser-text");
+  subheader.innerHTML = "Irony Analysis &#128527;";
+  analysis_sarcasm_container.appendChild(subheader);
+  
+  let progress_bar = document.createElement("div");
+  progress_bar.classList.add("analysis-sarcasm-progress-bar");
+  const filler = document.createElement("div");
+  progress_bar.appendChild(filler);
+  filler.classList.add("analysis-sarcasm-filler");
+  filler.style.width = `${sarcasm_percentage}%`;
+  analysis_sarcasm_container.appendChild(progress_bar);
+  
+  let progress_label = document.createElement("div");
+  progress_label.id = "analysis-sarcasm-text";
+  progress_label.classList.add("analyser-text");
+  progress_label.textContent = sarcasm_percentage + "% Sarcasm Detection";
+  analysis_sarcasm_container.appendChild(progress_label);
   
   return analysis_sarcasm_container;
   
