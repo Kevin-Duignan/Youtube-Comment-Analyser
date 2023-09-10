@@ -59,12 +59,39 @@ middleware = [Middleware(CORSMiddleware, allow_origins=["*"])]
 async def site_post(request):
     payload = await request.body()
     video_id = payload.decode("utf-8").replace("videoId=", "")
-    print(video_id)
     response_queue = asyncio.Queue()
     await request.app.model_queue.put((video_id, response_queue))
     output: tuple = await response_queue.get()
+    analysis = output[0]
+    template_output = {}
+    positive_count = analysis["sentiment_analysis"]["positive"][1]
+    negative_count = analysis["sentiment_analysis"]["negative"][1]
+    s_neutral_count = analysis["sentiment_analysis"]["neutral"][1]
 
-    return templates.TemplateResponse("display-info.html", {"request": request, "analysis": output[0]})
+    total_comments = positive_count + negative_count + s_neutral_count
+    template_output["positive"] = round((positive_count / total_comments) * 100)
+    template_output["negative"] = round((negative_count / total_comments) * 100)
+    template_output["neutral"] = round((s_neutral_count / total_comments) * 100)
+    template_output["sarcasm"] = round(analysis["sarcasm_analysis"] * 100)
+
+    max_count = 0
+    for key in analysis["emotion_analysis"].keys():
+        # count of each emotion
+        if analysis["emotion_analysis"][key][1] > max_count and key != "neutral":
+            template_output["strongest_emotion"] = key.title()
+
+    if template_output["strongest_emotion"] == "Anger":
+        template_output["emotion_emoji"] = 128544
+    elif template_output["strongest_emotion"] == "Joy":
+        template_output["emotion_emoji"] = 128514
+    elif template_output["strongest_emotion"] == "Disgust":
+        template_output["emotion_emoji"] = 129314
+    elif template_output["strongest_emotion"] == "Sadness":
+        template_output["emotion_emoji"] = 128546
+    elif template_output["strongest_emotion"] == "Fear":
+        template_output["emotion_emoji"] = 128552
+
+    return templates.TemplateResponse("popup-site.html", {"request": request, "analysis": template_output})
 
 
 async def site_get(request):
