@@ -4,13 +4,16 @@
     <title>Comment Analyser Popup</title>
     <link rel="stylesheet" type="text/css" href="popup.css" />
     <script src="popup.js"></script>
+    <meta charset="UTF-8" />
   </head>
   <body>
     <div class="popup-container">
       <div class="popup-content">
+        <h1 class="popup-header">YouTube Comment Analyser</h1>
+        <h2 class="popup-subheader">Sentiment Analysis &#128154;</h2>
         <div class="circle-row">
           <div class="circle green">
-            <span>50%</span>
+            <span>Percentage%</span>
             <svg class="ring">
               <circle
                 cx="50%"
@@ -21,10 +24,11 @@
               ></circle>
             </svg>
           </div>
+          <div class="circle-text">Filler Text</div>
         </div>
         <div class="circle-row">
           <div class="circle red">
-            <span>25%</span>
+            <span>Percentage%</span>
             <svg class="ring">
               <circle
                 cx="50%"
@@ -35,10 +39,11 @@
               ></circle>
             </svg>
           </div>
+          <div class="circle-text">Filler Text</div>
         </div>
         <div class="circle-row">
           <div class="circle yellow">
-            <span>75%</span>
+            <span>Percentage%</span>
             <svg class="ring">
               <circle
                 cx="50%"
@@ -49,14 +54,15 @@
               ></circle>
             </svg>
           </div>
+          <div class="circle-text">Filler Text</div>
         </div>
+        <h2 class="popup-subheader">Emotion Analysis &#128516;</h2>
         <div class="bar-chart">
           <!-- Bars will be added dynamically using JavaScript -->
         </div>
-        <div class="progress-bar-container">
-          <div class="progress-bar">
-            <div class="filler"></div>
-          </div>
+        <h2 class="popup-subheader">Irony Analysis &#128527;</h2>
+        <div class="progress-bar">
+          <div class="filler"></div>
         </div>
         <div class="progress-label">Sarcasm Detection</div>
       </div>

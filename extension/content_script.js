@@ -107,21 +107,67 @@ function createSentimentDisplay(results){
   let percent_positive = Math.round(results.sentiment_analysis.positive[1] / total_comments * 100);
   let percent_neutral  = Math.round(results.sentiment_analysis.neutral[1]  / total_comments * 100);
   let percent_negative = Math.round(results.sentiment_analysis.negative[1] / total_comments * 100);
+  let percentages = [percent_positive, percent_neutral, percent_negative];
   
   // Create the sentiment analysis container
   let analysis_sentiment_container = document.createElement("div");
   analysis_sentiment_container.id = "analysis-sentiment-display";
   analysis_sentiment_container.classList.add("analysis-data-container");
   
-  let analysis_sentiment_text = document.createElement("span");
-  analysis_sentiment_text.id = "analysis-sentiment-text";
-  analysis_sentiment_text.classList.add("analyser-text");
-  analysis_sentiment_text.classList.add("analyser-content-text");
-  let sentiment_string =       percent_positive + "% of comments are positive.";
-  sentiment_string += "<br>" + percent_neutral + "% of comments are neutral.";
-  sentiment_string += "<br>" + percent_negative + "% of comments are negative.";
-  analysis_sentiment_text.innerHTML = sentiment_string;
-  analysis_sentiment_container.appendChild(analysis_sentiment_text);
+  /*
+  <div id="analysis-sentiment-display" class="analysis-data-container">
+  <div class="circle green" style="width: 100px;height: 100px;border-radius: 50%;display: flex;flex-direction: column;justify-content: center;align-items: center;color: #3498db;font-weight: bold;background-color: transparent;box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);position: relative;">
+    <span style="font-size: 18px;">50%</span>
+    <svg class="ring" style="width: 100px;height: 100px;position: absolute;top: 0;left: 0;transform: rotate(-90deg);z-index: 1;">
+      <circle cx="50%" cy="50%" stroke-dasharray="251.2" stroke-dashoffset="0" style="fill: none;stroke-width: 10px;stroke-dasharray: 251.2;stroke-dashoffset: 150;transition: stroke-dashoffset 1s ease-in-out;stroke: #2ecc71;" r="40%"></circle>
+    </svg>
+  </div>
+  */
+  
+  let colors = ["green", "yellow", "red"];
+  let hover_titles = ["Positive", "Neutral", "Negative"];
+  
+  for(var p = 0;p < percentages.length;p ++){
+    
+    const percentage = percentages[p];
+    const circumference = 2 * Math.PI * 40; // Radius is 40
+    const offset = ((100 - percentage) / 100) * circumference;
+    
+    let circle_div = document.createElement("div");
+    circle_div.classList.add("analysis-circle-container");
+    circle_div.title = hover_titles[p] + " sentiment";
+    let percentage_text = document.createElement("span");
+    circle_div.appendChild(percentage_text);
+    percentage_text.innerHTML = percentage+"%";
+    
+    let svgNS = "http://www.w3.org/2000/svg";
+    let circle_svg = document.createElementNS(svgNS, "svg");
+    circle_svg.classList.add("analysis-ring");
+    circle_div.appendChild(circle_svg);
+    
+    let circle_poly = document.createElementNS(svgNS, "circle");
+    circle_poly.classList.add("analysis-circle", "analysis-circle-"+colors[p]);
+    circle_poly.setAttributeNS(null, "cx", "50%");
+    circle_poly.setAttributeNS(null, "cy", "50%");
+    circle_poly.setAttributeNS(null, "r", "40%");
+    circle_poly.setAttributeNS(null, "stroke-dasharray", "251.2");
+    circle_poly.setAttributeNS(null, "stroke-dashoffset", "0");
+    circle_poly.style.strokeDashoffset = offset;
+    circle_svg.appendChild(circle_poly);
+    
+    analysis_sentiment_container.appendChild(circle_div);
+    
+  }
+  
+  //let analysis_sentiment_text = document.createElement("span");
+  //analysis_sentiment_text.id = "analysis-sentiment-text";
+  //analysis_sentiment_text.classList.add("analyser-text");
+  //analysis_sentiment_text.classList.add("analyser-content-text");
+  //let sentiment_string =       percent_positive + "% of comments are positive.";
+  //sentiment_string += "<br>" + percent_neutral + "% of comments are neutral.";
+  //sentiment_string += "<br>" + percent_negative + "% of comments are negative.";
+  //analysis_sentiment_text.innerHTML = sentiment_string;
+  //analysis_sentiment_container.appendChild(analysis_sentiment_text);
   
   return analysis_sentiment_container;
   
