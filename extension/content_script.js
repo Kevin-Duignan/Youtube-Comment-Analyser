@@ -114,16 +114,6 @@ function createSentimentDisplay(results){
   analysis_sentiment_container.id = "analysis-sentiment-display";
   analysis_sentiment_container.classList.add("analysis-data-container");
   
-  /*
-  <div id="analysis-sentiment-display" class="analysis-data-container">
-  <div class="circle green" style="width: 100px;height: 100px;border-radius: 50%;display: flex;flex-direction: column;justify-content: center;align-items: center;color: #3498db;font-weight: bold;background-color: transparent;box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);position: relative;">
-    <span style="font-size: 18px;">50%</span>
-    <svg class="ring" style="width: 100px;height: 100px;position: absolute;top: 0;left: 0;transform: rotate(-90deg);z-index: 1;">
-      <circle cx="50%" cy="50%" stroke-dasharray="251.2" stroke-dashoffset="0" style="fill: none;stroke-width: 10px;stroke-dasharray: 251.2;stroke-dashoffset: 150;transition: stroke-dashoffset 1s ease-in-out;stroke: #2ecc71;" r="40%"></circle>
-    </svg>
-  </div>
-  */
-  
   let colors = ["green", "yellow", "red"];
   let hover_titles = ["Positive", "Neutral", "Negative"];
   
@@ -181,6 +171,24 @@ function createEmotionDisplay(results){
   let percent_emotion1 = Math.round(Object.values(results.emotion_analysis)[1][1] / total_comments * 100);
   let percent_emotion2 = Math.round(Object.values(results.emotion_analysis)[2][1] / total_comments * 100);
   
+  // Get the strongest emotion
+  let strongest_emotion_index = 0;
+  let strongest_emotion_name = "";
+  for(var e = 0; e < Object.keys(results.emotion_analysis).length; e ++){
+    if(Object.values(results.emotion_analysis)[e][1] > Object.values(results.emotion_analysis)[strongest_emotion_index][1] && Object.keys(results.emotion_analysis)[e] != "neutral"){
+      strongest_emotion_index = e;
+      strongest_emotion_name = Object.keys(results.emotion_analysis)[e];
+    }
+  }
+  let emotion_emojis = {
+    surprise: "😲",
+    joy: "😂",
+    anger: "😡",
+    sadness: "😢",
+    disgust: "🤢",
+    fear: "😨"
+  };
+  
   // Create the emotion analysis container
   let analysis_emotion_container = document.createElement("div");
   analysis_emotion_container.id = "analysis-emotion-display";
@@ -190,10 +198,11 @@ function createEmotionDisplay(results){
   analysis_emotion_text.id = "analysis-emotion-text";
   analysis_emotion_text.classList.add("analyser-text");
   analysis_emotion_text.classList.add("analyser-content-text");
-  let emoition_string =       percent_emotion0 + "% of comments are " + Object.keys(results.emotion_analysis)[0] + ".";
-  emoition_string += "<br>" + percent_emotion1 + "% of comments are " + Object.keys(results.emotion_analysis)[1] + ".";
-  emoition_string += "<br>" + percent_emotion2 + "% of comments are " + Object.keys(results.emotion_analysis)[2] + ".";
-  analysis_emotion_text.innerHTML = emoition_string;
+  let emotion_string = "Strongest Emotion:<br>" + strongest_emotion_name.charAt(0).toUpperCase() + strongest_emotion_name.slice(1) + " " + emotion_emojis[strongest_emotion_name];
+  //let emotion_string =       percent_emotion0 + "% of comments are " + Object.keys(results.emotion_analysis)[0] + ".";
+  //emotion_string += "<br>" + percent_emotion1 + "% of comments are " + Object.keys(results.emotion_analysis)[1] + ".";
+  //emotion_string += "<br>" + percent_emotion2 + "% of comments are " + Object.keys(results.emotion_analysis)[2] + ".";
+  analysis_emotion_text.innerHTML = emotion_string;
   analysis_emotion_container.appendChild(analysis_emotion_text);
   
   return analysis_emotion_container;
@@ -208,7 +217,7 @@ function createSarcasmDisplay(results){
   analysis_sarcasm_container.classList.add("analysis-data-container");
   
   let analysis_sarcasm_text = document.createElement("span");
-  analysis_sarcasm_text.id = "analysis-emotion-text";
+  analysis_sarcasm_text.id = "analysis-sarcasm-text";
   analysis_sarcasm_text.classList.add("analyser-text");
   analysis_sarcasm_text.classList.add("analyser-content-text");
   let sarcasm_string = Math.round(results.sarcasm_analysis*100) + "% of comments are sarcastic.";
