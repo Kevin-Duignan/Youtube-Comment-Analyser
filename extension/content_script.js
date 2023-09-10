@@ -19,6 +19,9 @@ function init(){
   
   let url = new URL(window.location.href);
   let video_id = url.searchParams.get("v");
+  if(video_id == undefined){
+    return;
+  }
   console.log("[YouTube Comment Analyser] Video ID:", video_id);
   
   // Request information from the server via the background worker
@@ -76,12 +79,19 @@ function displayResults(results){
   analysis_container.classList.add("ytd-comments-header-renderer");
   
   // Create the header
-  let analysis_header = document.createElement("span");
-  analysis_header.id = "analysis-header";
-  analysis_header.classList.add("analyser-text");
-  analysis_header.classList.add("analyser-header-text");
-  analysis_header.innerHTML = "Comment Analysis:";
-  analysis_container.appendChild(analysis_header);
+  //let icon_URL = chrome.runtime.getURL("popup/logo.svg");
+  //console.log(icon_URL);
+  //let analysis_header_icon = document.createElement("img");
+  //analysis_header_icon.src = icon_URL;
+  //analysis_header_icon.height = "64";
+  //analysis_container.appendChild(analysis_header_icon);
+  
+  //let analysis_header = document.createElement("span");
+  //analysis_header.id = "analysis-header";
+  //analysis_header.classList.add("analyser-text");
+  //analysis_header.classList.add("analyser-header-text");
+  //analysis_header.innerHTML = "Comment Analysis:";
+  //analysis_container.appendChild(analysis_header);
   
   let analysis_container_h_flex = document.createElement("div");
   analysis_container_h_flex.classList.add("analysis-horizontal-flex");
