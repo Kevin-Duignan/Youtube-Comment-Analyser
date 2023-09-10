@@ -45,7 +45,7 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
     console.log("Got message from script with video ID: " + message.video_id);
     
     // Send a request to the server
-    fetch("http://158.179.17.136:8080/" + message.video_id)
+    fetch("http://"+server_address+":"+server_port+"/" + message.video_id)
       .then((response) => response.json())
       .then((data) => {
         console.log("Got data from server:", data);
