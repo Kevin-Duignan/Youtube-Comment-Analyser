@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>YouTube URL Form</title>
+    <link rel="stylesheet" type="text/css" href="../static/styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <h2>Analyse My Video!</h2>
+        <form id="youtubeForm" action="/display-stats/" method="POST">
+            <input type="text" name="videoId" id="videoId" placeholder="Paste YouTube Video ID here" required>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+
+</html>

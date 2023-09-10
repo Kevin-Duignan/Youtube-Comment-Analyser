@@ -1,17 +1,20 @@
 from starlette.applications import Starlette
-from starlette.responses import JSONResponse
+from starlette.templating import Jinja2Templates
+from starlette.staticfiles import StaticFiles
+from starlette.responses import JSONResponse, HTMLResponse
 from starlette.middleware import Middleware
 from starlette.middleware.cors import CORSMiddleware
-from starlette.routing import Route
-from transformers import pipeline
+from starlette.routing import Route, Mount
 from analysis import AnalysisSingleton
 from comments import CommentProcessor
 from googleapiclient.errors import HttpError
 import asyncio
 import json
-import time
+
 
 TIMEOUT_THRESHOLD = 10  # Threshold
+templates = Jinja2Templates(directory="website")
+
 
 async def root(request):
     if request.method == "POST":
@@ -31,8 +34,12 @@ async def server_loop(model_queue: asyncio.Queue, analyser: AnalysisSingleton, c
     while True:
         (video_id, response_queue) = await model_queue.get()
         try:
-            top_comments = await asyncio.wait_for(asyncio.to_thread(cp.get_comment_threads, video_id), timeout=TIMEOUT_THRESHOLD)
-            out = await asyncio.wait_for(asyncio.to_thread(analyser.process_comment_list, top_comments), timeout=TIMEOUT_THRESHOLD)
+            top_comments = await asyncio.wait_for(
+                asyncio.to_thread(cp.get_comment_threads, video_id), timeout=TIMEOUT_THRESHOLD
+            )
+            out = await asyncio.wait_for(
+                asyncio.to_thread(analyser.process_comment_list, top_comments), timeout=TIMEOUT_THRESHOLD
+            )
             await response_queue.put(out)
         except asyncio.TimeoutError:
             failed_request = {"error": "Request or processing timed out"}
@@ -45,11 +52,36 @@ async def server_loop(model_queue: asyncio.Queue, analyser: AnalysisSingleton, c
             failed_request = {"error": "Unhandled exception encountered!"}
             await response_queue.put((failed_request, 500))
 
-middleware = [
-    Middleware(CORSMiddleware, allow_origins=["*"])
-]
 
-app = Starlette(routes=[Route("/", root, methods=["POST"]), Route("/{videoId}", root, methods=["GET"])], middleware=middleware)
+middleware = [Middleware(CORSMiddleware, allow_origins=["*"])]
+
+
+async def site_post(request):
+    payload = await request.body()
+    video_id = payload.decode("utf-8").replace("videoId=", "")
+    print(video_id)
+    response_queue = asyncio.Queue()
+    await request.app.model_queue.put((video_id, response_queue))
+    output: tuple = await response_queue.get()
+
+    return templates.TemplateResponse("display-info.html", {"request": request, "analysis": output[0]})
+
+
+async def site_get(request):
+    return templates.TemplateResponse("index.html", {"request": request})
+
+
+app = Starlette(
+    routes=[
+        Route("/", root, methods=["POST"]),
+        Route("/{videoId}", root, methods=["GET"]),
+        Route("/display-stats", site_post, methods=["POST"]),
+        Route("/", site_get, methods=["GET"]),
+        Mount("/static", StaticFiles(directory="static"), name="static"),
+    ],
+    middleware=middleware,
+)
+
 
 @app.on_event("startup")
 async def startup_event():
