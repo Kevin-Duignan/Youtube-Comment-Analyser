@@ -63,9 +63,14 @@ async def site_post(request):
     response_queue = asyncio.Queue()
     await request.app.model_queue.put((video_id, response_queue))
     output: tuple = await response_queue.get()
+    if output[1] != 200:
+        failed_request = {"error": "Failed to crawl YouTube comments"}
+        return JSONResponse(failed_request, status_code=output[1])
     analysis = output[0]
+
     template_output = {}
     template_output["video_id"] = video_id
+
     positive_count = analysis["sentiment_analysis"]["positive"][1]
     negative_count = analysis["sentiment_analysis"]["negative"][1]
     s_neutral_count = analysis["sentiment_analysis"]["neutral"][1]
