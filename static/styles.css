@@ -8,7 +8,7 @@ body {
 	background-size: cover;
 	margin: 0;
 	padding: 0;
-	color: #333;
+	color: #f7f7f7;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -17,15 +17,23 @@ body {
 }
 
 .container {
-	background: rgba(255, 255, 255, 0.8);
+	background: rgba(28, 35, 43, 0.9);
 	padding: 20px;
 	border-radius: 10px;
 	width: 100%;
 	max-width: 500px;
 }
 
-h2 {
+h3 {
 	text-align: center;
+}
+
+a {
+	text-decoration: none;
+	color: #cee1f5;
+}
+a:hover {
+	color: rgb(129, 159, 185);
 }
 
 #videoId {
@@ -41,8 +49,8 @@ button {
 	display: block;
 	width: 100%;
 	border: none;
-	background: #333;
-	color: #fff;
+	background: rgba(28, 35, 43);
+	color: #f7f7f7;
 	padding: 10px;
 	border-radius: 4px;
 	cursor: pointer;

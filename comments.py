@@ -8,7 +8,7 @@ class CommentProcessor:
         self.API_KEY = api_key
         self.youtube_service = build("youtube", "v3", developerKey=api_key)
 
-    def get_comment_threads(self, videoID: str, pages: int = 1, rich_comment: bool = False) -> list[str]|list[dict]:
+    def get_comment_threads(self, videoID: str, pages: int = 1, rich_comment: bool = False) -> list:
         """
         Fetches comment threads for a given YouTube video.
         
@@ -51,7 +51,7 @@ class CommentProcessor:
 
         return comments_list
 
-    def _process_comments(self, response: dict, rich_comment: bool = False) -> list[str]|list[dict]:
+    def _process_comments(self, response: dict, rich_comment: bool = False) -> list:
         """
         Process comment data from the YouTube API response.
 

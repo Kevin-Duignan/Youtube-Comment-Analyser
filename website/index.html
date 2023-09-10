@@ -8,12 +8,52 @@
 
 <body>
     <div class="container">
-        <h2>Analyse My Video!</h2>
+        <img src="./static/logo.svg" width="100%" height="auto" class="logo" />
+        <h3><a href="https://github.com/Kevin-Duignan/MACathon-noname/commits/main">See on GitHub!</a></h3>
         <form id="youtubeForm" action="/display-stats/" method="POST">
-            <input type="text" name="videoId" id="videoId" placeholder="Paste YouTube Video ID here" required>
+            <input type="text" name="videoId" id="videoId" placeholder="Paste the Full Youtube URL here" required>
             <button type="submit">Submit</button>
         </form>
     </div>
+
 </body>
+<script>
+    // Retrieve the form element
+    var form = document.getElementById("youtubeForm");
+
+    // Add an event listener for form submission
+    form.addEventListener("submit", function (event) {
+        // Prevent the default form submission behavior
+        event.preventDefault();
+
+        // Get the input value
+        var input = document.getElementById("videoId");
+        var url = input.value;
+
+        // Extract the video ID from the URL
+        var videoid = extractVideoID(url);
+        // Update the input value with the video ID
+        input.value = videoid;
+
+        // Submit the form
+        form.submit();
+    });
+
+    // Function to extract the YouTube video ID from the URL
+    function extractVideoID(url) {
+        // Regular expression pattern to match the video ID
+        var pattern = /(?:https?:\/\/)?(?:www\.)?youtube\.com\/watch\?v=([^\s&]+)/;
+
+        // Extract the video ID using the pattern
+        var matches = url.match(pattern);
+
+        // Return the video ID if found, or an empty string
+        if (matches && matches[1]) {
+            return matches[1];
+        } else {
+            return "";
+        }
+    }
+</script>
 
 </html>

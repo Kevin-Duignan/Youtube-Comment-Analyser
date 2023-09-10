@@ -1,19 +1,21 @@
 /* popup.css */
 
 body {
+	display: grid;
 	margin: 0;
 	padding: 0;
 	font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
 		"Lucida Sans", Arial, sans-serif;
 	color: #fff;
 	text-align: center;
-	background-color: #1c232b;
+	background-image: url(background.jpg);
 	overflow: hidden;
+	place-items: center;
 }
 
 .popup-container {
 	width: 500px;
-	margin: 0 auto;
+	margin: auto;
 	border-radius: 15px;
 	color: #8ed4de;
 	background-color: #1c232b;
@@ -132,7 +134,6 @@ circle {
 /* Progress label */
 .progress-label {
 	margin-top: 10px;
-	color: #fff;
 	font-weight: bold;
 	text-align: center;
 	font-size: 15px;
