@@ -12,6 +12,7 @@
     <div class="popup-container">
         <div class="popup-content">
             <h1 class="popup-header">YouTube Comment Analyser</h1>
+            <a class="popup-header" href="https://www.youtube.com/watch?v={{analysis['video_id']}}">Video Link</a>
             <h2 class="popup-subheader">Sentiment Analysis &#128154;</h2>
             <div class="circle-row">
                 <div class="circle green">
@@ -20,6 +21,7 @@
                         <circle cx="50%" cy="50%" r="40%" stroke-dasharray="251.2" stroke-dashoffset="0"></circle>
                     </svg>
                 </div>
+                <div class="circle-text">Positive Comments</div>
             </div>
             <div class="circle-row">
                 <div class="circle red">
@@ -28,6 +30,7 @@
                         <circle cx="50%" cy="50%" r="40%" stroke-dasharray="251.2" stroke-dashoffset="0"></circle>
                     </svg>
                 </div>
+                <div class="circle-text">Negative Comments</div>
             </div>
             <div class="circle-row">
                 <div class="circle yellow">
@@ -36,6 +39,7 @@
                         <circle cx="50%" cy="50%" r="40%" stroke-dasharray="251.2" stroke-dashoffset="0"></circle>
                     </svg>
                 </div>
+                <div class="circle-text">Neutral Comments</div>
             </div>
             <h2 class="popup-subheader">Strongest Emotion: {{analysis["strongest_emotion"]}}
                 &#{{analysis["emotion_emoji"]}};</h2>
@@ -44,7 +48,7 @@
             <!-- </div> -->
             <h2 class="popup-subheader">Irony Analysis &#128527;</h2>
             <div class="progress-bar">
-                <div class="filler" style="width: {{ analysis['sarcasm'] }}"></div>
+                <div class="filler" style="width: {{ analysis['sarcasm'] }}%"></div>
             </div>
             <div class="progress-label">Sarcasm Detection: {{analysis["sarcasm"]}} %</div>
         </div>

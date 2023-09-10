@@ -59,11 +59,13 @@ middleware = [Middleware(CORSMiddleware, allow_origins=["*"])]
 async def site_post(request):
     payload = await request.body()
     video_id = payload.decode("utf-8").replace("videoId=", "")
+
     response_queue = asyncio.Queue()
     await request.app.model_queue.put((video_id, response_queue))
     output: tuple = await response_queue.get()
     analysis = output[0]
     template_output = {}
+    template_output["video_id"] = video_id
     positive_count = analysis["sentiment_analysis"]["positive"][1]
     negative_count = analysis["sentiment_analysis"]["negative"][1]
     s_neutral_count = analysis["sentiment_analysis"]["neutral"][1]
@@ -81,15 +83,17 @@ async def site_post(request):
             template_output["strongest_emotion"] = key.title()
 
     if template_output["strongest_emotion"] == "Anger":
-        template_output["emotion_emoji"] = 128544
+        template_output["emotion_emoji"] = 128545
     elif template_output["strongest_emotion"] == "Joy":
         template_output["emotion_emoji"] = 128514
     elif template_output["strongest_emotion"] == "Disgust":
         template_output["emotion_emoji"] = 129314
     elif template_output["strongest_emotion"] == "Sadness":
         template_output["emotion_emoji"] = 128546
+    elif template_output["strongest_emotion"] == "Surprise":
+        template_output["emotion_emoji"] = 128562
     elif template_output["strongest_emotion"] == "Fear":
-        template_output["emotion_emoji"] = 128552
+        template_output["emotion_emoji"] = 128561
 
     return templates.TemplateResponse("popup-site.html", {"request": request, "analysis": template_output})
 
