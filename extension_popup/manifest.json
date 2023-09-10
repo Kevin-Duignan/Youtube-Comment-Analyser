@@ -1,15 +1,9 @@
 {
-    "manifest_version": 3,
-    "name": "YouTube Comment Analyser",
-    "version": "1.0",
-    "permissions": [
-      "webNavigation",
-      "activeTab"
-    ],
-    "background": {
-      "service_worker": "background.js"
-    },
-    "action": {
-      "default_popup": "popup.html"
-    }
+  "manifest_version": 3,
+  "name": "YouTube Comment Analyser",
+  "version": "1.0",
+  "permissions": ["webNavigation", "activeTab", "tabs"],
+  "action": {
+    "default_popup": "popup.html"
   }
+}
