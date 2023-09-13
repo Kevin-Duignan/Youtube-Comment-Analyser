@@ -25,7 +25,7 @@ youTubeCommentAnalyser is an extension/website that parses through the comments 
 1. You're done! Now visit any YouTube video
 1. See the comment analysis above the comment section, and on the extension popup!
 
-If you need more help, or are a FireFox user, visit this [vide](https://www.youtube.com/watch?v=dhaGRJvJAII) for a thorough walkthrough.
+If you need more help, or are a FireFox user, visit this [video](https://www.youtube.com/watch?v=dhaGRJvJAII) for a thorough walkthrough.
 
 ![](assets/20230910_183618_image.png)
 
