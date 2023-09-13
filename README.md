@@ -16,15 +16,16 @@ youTubeCommentAnalyser is an extension/website that parses through the comments 
 
 ### Extension
 
-1. Download ZIP of GitHub, or run `git clone https://github.com/Kevin-Duignan/MACathon-noname`
-2. Open Zip
-3. Open Chrome, or a Chromium browser
-4. Visit your browser's [extensions page](chrome://extensions/)
-5. Turn on Developer Mode
-6. Load Unpacked
-7. Select the _extension_ folder in the project directory
-8. Visit any YouTube video
-9. See the comment analysis above the comment section, and on the extension popup!
+1. Download and open ZIP of GitHub, or alternatively, run `git clone https://github.com/Kevin-Duignan/MACathon-noname`
+1. Open a Chrome or Chromium
+1. Visit your browser's [extensions](chrome://extensions/) page
+1. Turn on Developer Mode
+1. Load Unpacked
+1. Select the _extension_ folder in this project's directory
+1. You're done! Now visit any YouTube video
+1. See the comment analysis above the comment section, and on the extension popup!
+
+If you need more help, or are a FireFox user, visit this [vide](https://www.youtube.com/watch?v=dhaGRJvJAII) for a thorough walkthrough.
 
 ![](assets/20230910_183618_image.png)
 
